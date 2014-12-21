@@ -1,0 +1,52 @@
+import java.awt.Color;
+import java.awt.geom.*;
+import java.util.*;
+import gpdraw.*;
+
+/**
+ * TODO Write a one-sentence summary of your class here.
+ * TODO Follow it with additional details about its purpose, what abstraction
+ * it represents, and how to use it.
+ *
+ * @author  TODO Your Name
+ * @version TODO Date
+ *
+ * @author  Period - TODO Your Period
+ * @author  Assignment - TODO Assignment Name
+ * 
+ * @author  Sources - TODO list collaborators
+ */
+public class IrregularPolygon
+{
+    private DrawingTool pen = new DrawingTool( new SketchPad( 300, 300, 0 ) );
+    private ArrayList<Point2D.Double> myPolygon;
+
+    //constuctors
+    
+    public IrregularPolygon()
+    {
+
+    }
+
+    // public methods
+
+    public void add( Point2D.Double aPoint )
+    {
+
+    }
+
+    public double perimeter()
+    {
+        return 0.0;  //fix this!
+    }
+
+    public double area()
+    {
+        return 0.0; //fix this!
+    }
+
+    public void draw()
+    {
+
+    }
+}

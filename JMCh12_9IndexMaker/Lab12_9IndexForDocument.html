@@ -1,0 +1,132 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<style type="text/css">
+<!--
+code         { font-family: 'Courier New', Courier, monospace; font-size: 110% }
+pre          { font-family: 'Courier New', Courier, monospace; font-size: 110% }
+-->
+</style>
+<title>Lab: Creating an Index for a Document</title>
+</head>
+
+<body>
+
+<h2 align="center">12.9 <i>Lab</i>: Creating an Index for a Document</h2>
+<p>In this lab you will write a program that reads a text file and generates an
+index for it. All the words that occur in the text should be listed in the index
+in upper case in alphabetical order. Each word should be followed by a list of
+all the line numbers for lines that contain that word. Figure 12-6 shows an
+example.</p>
+<p>The <i>Index Maker</i> program consists of three classes (Figure 12-7). It
+also uses <code>ArrayList</code> in two ways: <code><code>IndexEntry</code></code>
+<u>has an</u> <code>ArrayList&lt;Integer&gt;</code> field that holds the line
+numbers, and <code><code>DocumentIndex</code></code> <u>extends</u> <code>ArrayList&lt;<code>IndexEntry</code>&gt;</code>.</p>
+<p>The <code>IndexMaker</code> class is the main class. We have provided this
+class for you in <code><a href="IndexMaker.java" target="_blank">JM\Ch12\IndexMaker</a></code>.
+Its main method prompts the user for the names of the input and output files (or
+obtains them from command-line arguments, if supplied), opens the input file,
+creates an output file, reads and processes all the lines from the input file,
+then saves the resulting document index in the output file.</p>
+<p>Writing the <code>DocumentIndex</code> and <code>IndexEntry</code> classes is
+left to you (possibly in a team with another programmer). You don't have to deal
+with reading or writing files in this lab.</p>
+<p align="center"><img border="0" src="Lab12_1.gif" width="492" height="315"></p>
+<p align="center"><b>Figure 12-6. A <a href="fish.txt" target="_blank">sample
+text file</a> and its index</b></p>
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="Lab12_2.gif" width="329" height="157"></p>
+<p align="center"><b>Figure 12-7. <code>IndexMaker</code> classes</b></p>
+<p>&nbsp;</p>
+<h4 align="center"><img border="0" src="Lab12_3.gif" width="60" height="54"></h4>
+<h4 align="left">The <code><code>IndexEntry</code></code> class</h4>
+<p align="left">An <code>IndexEntry</code> object represents one index entry. It
+has two fields:</p>
+<blockquote>
+  <pre>private String word;
+private ArrayList&lt;Integer&gt; numsList;</pre>
+</blockquote>
+<p>The numbers in <code>numsList</code> represent the line numbers where word
+occurs in the input file. (Note that the <code>IndexEntry</code> class is quite
+general and reusable: the numbers can represent line numbers, page numbers,
+etc., depending on the application.)</p>
+<p>Provide a constructor for this class that takes a given word (a <code>String</code>),
+converts it into the upper case (by calling <code>toUpperCase</code>), and saves
+it in word. The constructor should also initialize <code>numsList</code> to an
+empty <code>ArrayList&lt;Integer&gt;</code>.</p>
+<p>This class should have the following three methods:</p>
+<ol>
+  <li><code>void add(int num)</code> — appends num to <code>numsList</code>,
+    but only if it is not already in that list. You will need to convert num
+    into an <code>Integer</code> to call <code>numsList</code>'s <code>contains</code>
+    method.</li>
+  <li><code>String getWord()</code> — this is an accessor method; it returns <code>word</code>.</li>
+  <li><code>String toString()</code> — returns a string representation of this
+    <code>IndexEntry</code> in the format used in each line of the output file
+    (Figure&nbsp;12-6).</li>
+</ol>
+<h4>The <code>DocumentIndex</code> class</h4>
+<p>A <code>DocumentIndex</code> object represents the entire index for a
+document: the list of all its index entries. The index entries should always be
+arranged in alphabetical order, as in Figure 12-6.</p>
+<p>Make the <code>DocumentIndex</code> class extend <code>ArrayList&lt;IndexEntry&gt;</code>.
+Provide two constructors: one that creates a list with the default capacity, the
+other that creates a list with a given capacity. (These constructors simply call
+the respective constructors of the superclass, <code>ArrayList</code>.)</p>
+<p><code>DocumentIndex</code> should have the following two methods:</p>
+<ol>
+  <li>
+    <p><code>void addWord(String word, int num)</code> — <code>addWord</code>
+    adds <code>num</code> to the <code>IndexEntry</code> for word by calling
+    that <code>IndexEntry</code>'s <code>add(num)</code> method. If <code>word</code>
+    is not yet in this <code>DocumentIndex</code>, the method first creates a
+    new <code>IndexEntry</code> for <code>word</code> and inserts it into this
+    list in alphabetical order (ignoring the upper and lower case).</p>
+  </li>
+  <li>
+    <p><code>void addAllWords(String str, int num)</code> — extracts all the
+    words from <code>str</code> (skipping punctuation and whitespace) and for
+    each word calls <code>addWord(word, num)</code>.</p>
+    <p>You could code the word extractor yourself, of course, but it is much
+    better to use the <code>String</code> class's <code>split</code> method.
+    Look it up in the Java API. Use the one that takes one parameter, <code>regex</code>,
+    that is, a <i>regular expression</i>. Regular expressions are not specific
+    to Java: they are used in many languages and text parsers. <code>regex</code>
+    describes the match pattern for all possible word separators. Use &quot;<code>\\W+</code>&quot;
+    here. <code>\W</code> (with an uppercase 'W') stands for any
+    &quot;non-word&quot; character, that is, any character that is not a digit
+    or a letter. <code>+</code> means &quot;occurs at least once.&quot; (Regular
+    expressions use backslash as the escape character; hence the double
+    backslash in the literal string.)</p>
+    <p><code>split</code> returns an array of <code>String</code>s. Use a
+    &quot;for each&quot; loop to call <code>addWord</code> for each word in that
+    array. Note, however, that split may put an empty string into the resulting
+    array — when <code>str</code> starts with a separator or when <code>str</code>
+    is empty. This is an unfortunate decision (or a bug). Make sure you skip
+    empty strings and do not call <code>addWord</code> for them.</p>
+  </li>
+</ol>
+<p>We recommend that you also define a private helper method
+<blockquote>
+  <pre>private int foundOrInserted(String word)</pre>
+</blockquote>
+and call it from <code>addWord</code>. This method should traverse this <code>DocumentIndex</code>
+and compare word (case-blind) to the words in the <code>IndexEntry</code>
+objects in this list, looking for the position where word fits in
+alphabetically. If an <code>IndexEntry</code> with word is not already in that
+position, the method creates and inserts a new <code>IndexEntry</code> for <code>word</code>
+at that position. The method returns the position (we'd like to say &quot;the
+index&quot; but we have too many indices going already!) of the either found or
+inserted <code>IndexEntry</code>.
+<p>Test your program thoroughly on different text data files, including an empty
+file, a file with blank lines, a file with lines that have leading spaces or
+punctuation, a file with multiple occurrences of a word on the same line, and a
+file with the same word on different lines.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

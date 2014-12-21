@@ -1,0 +1,56 @@
+/**
+ * TODO Write a one-sentence summary of your class here. TODO Follow it with
+ * additional details about its purpose, what abstraction it represents, and how
+ * to use it.
+ *
+ * @author jessicajiang
+ * @version Oct 23, 2014
+ * @author Period: 4
+ * @author Assignment: A29_1OldMacDonald
+ *
+ * @author Sources: TODO
+ */
+public class Chick implements Animal
+{
+    private String myType;
+
+    private String mySound;
+
+
+    /**
+     * @param type
+     *            of chick
+     */
+    public Chick( String type, String sound)
+    {
+        myType = type;
+        mySound = sound;
+        int x;
+        x = (int)(Math.random());
+        
+        if ( x % 2  == 0 ) 
+        { 
+            mySound = "cheep"; 
+            
+        } 
+        else 
+        { 
+            mySound = "cluck";
+        }
+    }
+
+
+    /**
+     * @return myType type of animal
+     */
+    public String getType()
+    {
+        return myType;
+    }
+
+
+    public String getSound()
+    {
+        return mySound;
+    }
+}

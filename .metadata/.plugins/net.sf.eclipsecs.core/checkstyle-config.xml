@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-configurations file-format-version="5.0.0" default-check-configuration="VTCS Checks">
+  <check-configuration name="VTCS Checks" location="internal_config__1253497125433.xml" type="internal" description=""/>
+</checkstyle-configurations>

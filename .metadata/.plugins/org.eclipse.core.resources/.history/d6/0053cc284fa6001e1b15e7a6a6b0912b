@@ -1,0 +1,11 @@
+#ifndef TESTS_H_
+#define TESTS_H_
+
+#include <cxxtest/TestSuite.h>
+
+class Tests : public CxxTest::TestSuite
+{
+public:
+};
+
+#endif /*TESTS_H_*/

@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+
+public class IndexEntry
+{
+    private String word;
+    private ArrayList<Integer> numsList;
+
+    // Constructs an IndexEntry for a given word
+    // (converted to upper case); sets numsList
+    // to an empty ArrayList.
+    public IndexEntry(String word)
+    {
+        numsList = new ArrayList<Integer>();
+        this.word = word.toUpperCase();
+        
+    }
+
+    // Returns the word of this IndexEntry object.
+    public String getWord()
+    {
+        return word;
+    }
+
+    // If num is not already in the list, adds num
+    // at the end of this IndexEntry's list
+    // of numbers.
+    public void add(int num)
+    {
+        Integer num1 = num;
+        if (!numsList.contains( num1 ))
+        {
+            numsList.add( num1 );
+        }
+        
+        /**for (int s : numsList)
+        {
+            if ( s != num )
+            {
+                numsList.add( num );
+            }
+        }
+        */
+        
+    }
+
+    // Converts this IndexEntry into a string in the
+    // following format: the word followed by a space, followed by
+    // numbers separated by a comma and a space.
+    public String toString()
+    {
+        String result = word;
+        for ( Integer num : numsList )
+        {
+            result +=( " " + num + " , ");
+        }
+        result = result.substring(  0 , result.length() - 1 );
+        return result;
+                        
+    }
+}

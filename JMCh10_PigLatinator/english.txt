@@ -1,0 +1,5 @@
+"Hasta la vista baby." - the Terminator
+
+System.out.println("I love Java");
+
+I have never let my schooling interfere with my education. - Mark Twain

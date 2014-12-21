@@ -1,0 +1,6 @@
+INDEX VERSION 1.127+D:\StudentStorage\jjiang686\Dropbox\workspaceAPCS\.metadata\.plugins\org.eclipse.jdt.core
+2875893537.index
+1152399006.index
+2232826661.index
+816058267.index
+4109925700.index

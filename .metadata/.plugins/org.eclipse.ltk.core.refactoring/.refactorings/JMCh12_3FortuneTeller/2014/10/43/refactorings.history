@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;JMCh12_3FortuneTeller&apos;&#x0D;&#x0A;- Original project: &apos;JMCh12_3FortuneTeller&apos;&#x0D;&#x0A;- Original element: &apos;FortuneTeller (LHS-PRLAB-13&apos;s conflicted copy 2014-10-24).java&apos;" description="Delete element" element1="FortuneTeller (LHS-PRLAB-13&apos;s conflicted copy 2014-10-24).java" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="1" stamp="1414175275801" subPackages="false" version="1.0"/>
+</session>

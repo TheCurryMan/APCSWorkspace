@@ -1,0 +1,11 @@
+import java.util.package;
+
+/**
+this is just to apply what I'm reading in the textbook
+*/
+
+public class funsies
+{
+    double[] lala = new double[10];
+    Color[] blah = new Color[5];
+}
