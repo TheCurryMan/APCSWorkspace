@@ -2,6 +2,18 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JPanel;
 
+/**
+ *  TODO Write a one-sentence summary of your class here.
+ *  TODO Follow it with additional details about its purpose, what abstraction
+ *  it represents, and how to use it.
+ *
+ *  @author  jjiang686
+ *  @version Jan 6, 2015
+ *  @author  Period: TODO
+ *  @author  Assignment: JMCh20_7Teletext
+ *
+ *  @author  Sources: TODO
+ */
 public class TeletextDisplay extends JPanel implements ActionListener
 {
     private TeletextList msgList;
