@@ -22,7 +22,7 @@ public class JMCh20Exercises<E>
      */
     public ListNode<String> exercise1()
     {
-        ListNode<String> node3 = new ListNode<String>( "Node 3", __________ );
+        ListNode<String> node3 = new ListNode<String>( "Node 3",  );
         ListNode<String> node2 = new ListNode<String>( "Node 2", __________ );
         ListNode<String> node1 = new ListNode<String>( "Node 1", __________ );
         ListNode<String> head = __________;
@@ -125,9 +125,17 @@ public class JMCh20Exercises<E>
      */
     public ListNode<E> reverseList( ListNode<E> head )
     {
-        // TODO complete method
+        ListNode<E> newNode = head;
+        if ( head == null)
+        {
+            return head;
+        }
         
-        return null;  //TODO fix return value
+        ListNode<E> head = null;
+        ListNode<E> 
+        for ( newNode = head; newNode.getValue() < )
+            
+            for ()
     }
 
     /**
@@ -189,9 +197,16 @@ public class JMCh20Exercises<E>
      */
     public ListNode<String> insertInOrder( ListNode<String> head, String s )
     {
-        // TODO complete method
-        
-        return null;  //TODO fix return value
+        ListNode2<String> heading,topNode;
+        ListNode2<String> tempNode = heading.getNext();
+        topNode = tempNode;
+        ListNode2<String> newNode = tempNode.getNext();
+        ListNode2<String> replace = new ListNode2<String>( msg,
+            tempNode,
+            newNode );
+        tempNode.setNext( replace );
+        tempNode = tempNode.getNext().getNext();
+        tempNode.setPrevious( replace );
     }
 
     /**
@@ -209,9 +224,14 @@ public class JMCh20Exercises<E>
      */
     public ListNode<E> middleNode( ListNode<E> head )
     {
-        // TODO complete method
-        
-        return null;  //TODO fix return value
+        ListNode<E> newNode = head;
+        for ( ListNode<E> node = head; node != null; node = node.getNext())
+        {
+            Object value = node.getValue();
+            node = node.getNext();
+        }
+        return newNode;
+
     }
 
     private boolean match( String str, String pattern )
