@@ -9,7 +9,7 @@ public class TeletextList
 
 
     /**
-     * Creates a circular list of headlines. First creates a circular list with
+     * Creates aclm circular list of headlines. First creates a circular list with
      * one node, "Today's headlines:". Saves a reference to that node in
      * heading. Adds a node holding an empty string before heading and another
      * node holding an empty string after heading. Appends all the strings from
@@ -110,7 +110,7 @@ public class TeletextList
 
     /**
      * Adds a new node with msg to the headlines list after a given node.
-     * Returns a referenece to the added node.
+     * Returns a reference to the added node.
      */
     private ListNode2<String> addAfter( ListNode2<String> node, String msg )
     {
