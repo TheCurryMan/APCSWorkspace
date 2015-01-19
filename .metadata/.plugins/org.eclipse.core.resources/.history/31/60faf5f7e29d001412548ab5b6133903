@@ -1,0 +1,105 @@
+import java.util.*;
+
+
+/**
+ * RPN Calculator
+ *
+ * @author Jessica Jiang
+ * @version January 14th
+ * @author Period: 4
+ * @author Assignment: AB31RPN Calculator
+ *
+ * @author Sources: TODO List Collaborators
+ */
+public class RPN
+{
+    Scanner scan = new Scanner( System.in );
+
+    private Stack<Integer> myStack;
+
+    private Queue<String> myQ;
+
+
+    /**
+     * Constructs an RPN Calculator
+     */
+    public RPN()
+    {
+        myStack = new Stack<Integer>();
+        myQ = new LinkedList<String>();
+    }
+
+
+    /**
+     * **** Used for testing - Do Not Remove ***
+     * 
+     * Constructs an RPN Calculator and then redirects the Scanner scan to the
+     * supplied string.
+     * 
+     * @param console
+     *            replaces console scan
+     */
+    public RPN( String console )
+    {
+        this();
+        scan = new Scanner( console );
+    }
+
+
+    /**
+     * TODO Write your method description here.
+     */
+    public void calculate()
+    {
+        String s = " ";
+        while ( !s.equals( "a" ) || !s.equals( "Q" ) )
+        {
+            s = scan.next();
+            try
+            {
+                int ints = Integer.valueOf( s );
+                myStack.push( ints );
+            }
+            catch ( Exception e )
+            {
+                if ( s.equals( "*" ) )
+                {
+                    myStack.push( myStack.pop() * myStack.pop() );
+
+                }
+                else if ( s.equals( "/" ) )
+                {
+                    myStack.push( (int)myStack.pop() / myStack.pop() );
+
+                }
+                else if ( s.equals( "+" ) )
+                {
+                    myStack.push( myStack.pop() + myStack.pop() );
+
+                }
+                else if ( s.equals( "-" ) )
+                {
+                    myStack.push( myStack.pop() - myStack.pop() );
+
+                }
+                else if ( s.equals( "=" ) )
+                {
+                    System.out.println( myStack.pop() );
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Instantiates an RPN Calculator and invokes it calculate method
+     * 
+     * @param args
+     *            command-line arguments (not used)
+     */
+    public static void main( String[] args )
+    {
+        RPN rpn = new RPN();
+        rpn.calculate();
+    }
+}
