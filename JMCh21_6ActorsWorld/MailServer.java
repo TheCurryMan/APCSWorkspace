@@ -14,34 +14,37 @@ import java.util.*;
 public class MailServer extends LinkedList<Message>
 {
     private Set<Actor> actors;
-
-
-    // TODO complete class
-
-    /**
-     * Adds actor to the set of the registered subscribers
-     * 
-     * @param actor
-     */
+ 
+    public MailServer()
+    {
+        actors = new TreeSet<Actor>();
+    }
+ 
     public void signUp( Actor actor )
     {
-        
+        actors.add( actor );
     }
-
-
-    /**
-     * Either sends msg to the recipient indicated in msg (by calling the
-     * recipient’s receive(msg)), or, if the recipient is null, to all
-     * registered subscribers (except the sender).
-     * 
-     * @param msg
-     */
+ 
+ 
     public void dispatch( Message msg )
     {
-
+        if ( msg.getRecipient() == null )
+        {
+            for ( Actor actor : actors )
+            {
+                if ( !actor.equals( msg.getSender() ) )
+                {
+                    actor.receive( msg );
+                }
+            }
+        }
+        else
+        {
+            msg.getRecipient().receive( msg );
+        }
     }
-
-
+ 
+ 
     // for testing purposes only
     protected Set<Actor> getActors()
     {
