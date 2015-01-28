@@ -3,18 +3,19 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="263" key="DIALOG_WIDTH"/>
 		<item value="280" key="DIALOG_Y_ORIGIN"/>
-		<item value="477" key="DIALOG_X_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="477" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="readMail" key="selection"/>
+		<item value="count" key="selection"/>
 		<list key="findhistory">
+			<item value="cnt"/>
 			<item value="readMail"/>
 			<item value="check"/>
 			<item value="stack"/>
@@ -22,9 +23,9 @@
 			<item value="input"/>
 			<item value="middle"/>
 			<item value="setValue"/>
-			<item value="temp"/>
 		</list>
 		<list key="replacehistory">
+			<item value="count"/>
 			<item value="s"/>
 			<item value="myStack"/>
 			<item value="scan"/>
@@ -32,7 +33,6 @@
 			<item value="mid"/>
 			<item value="middle"/>
 			<item value="extra"/>
-			<item value="small"/>
 		</list>
 	</section>
 </section>
