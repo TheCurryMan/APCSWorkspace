@@ -5,10 +5,10 @@ import java.util.NoSuchElementException;
 /**
    Implements a BST with TreeNode nodes. 
 
-   @author  TODO Your Name
-   @version TODO Date
+   @author  Jessica Jiang
+   @version February 6th, 2015
 
-   @author  Period - TODO Your Period
+   @author  Period - 4
    @author  Assignment - AB30.3 - TreeStats
 
    @author  Sources - TODO list collaborators
@@ -33,7 +33,11 @@ public class MyTreeSet<E>
     // post: prints the data fields of the tree using an inorder traversal
     private void printInorderHelper( TreeNode<E> root )
     {
-        // TODO: Complete method
+        if(root == null)
+            return;
+        printInorderHelper(root.getLeft());
+        System.out.print(root.getValue() + " ");
+        printInorderHelper(root.getRight());
     }
 
     // post: prints the data fields of the tree, one per line
@@ -46,7 +50,11 @@ public class MyTreeSet<E>
     // post: prints the data fields of the tree using an inorder traversal
     private void printPreorderHelper( TreeNode<E> root )
     {
-        // TODO: Complete method
+        if(root == null)
+            return;
+        System.out.print(root.getValue() + " ");
+        printPreorderHelper( root.getLeft());
+        printPreorderHelper( root.getRight());
     }
 
     // post: prints the data fields of the tree, one per line
@@ -59,7 +67,16 @@ public class MyTreeSet<E>
     // post: prints the data fields of the tree using an inorder traversal
     private void printPostorderHelper( TreeNode<E> root )
     {
-        // TODO: Complete method
+        if( root == null)
+        {
+            return;
+        }
+        else
+        {
+            printPostorderHelper(root.getLeft());
+            printPostorderHelper(root.getRight());
+            System.out.print(root.getValue() + " ");
+        }
     }
 
     // post: returns the number of nodes in the tree
@@ -72,9 +89,13 @@ public class MyTreeSet<E>
     // post: returns the number of nodes
     private int countNodesHelper( TreeNode<E> root )
     {
-        // TODO: Complete method
-        
-        return 0;  // FIX THIS!!
+        if(root == null)
+        {
+            return 0;
+        }
+        int count1 = countNodesHelper(root.getLeft());
+        int count2 = countNodesHelper(root.getRight());
+        return 1 + count1 + count2;
     }
 
     // post: returns the number of leaves in the tree
@@ -87,9 +108,18 @@ public class MyTreeSet<E>
     // post: returns the number of leaves
     private int countLeaves( TreeNode<E> root )
     {
-        // TODO: Complete method
-        
-        return 0;  // FIX THIS!!
+        if ( root == null )
+            return 0;
+        if ( root.getLeft() == null && root.getRight() == null )
+        {
+ 
+            return 1;
+        }
+        else
+        {
+            return countLeaves( root.getLeft() )
+                + countLeaves( root.getRight() );
+        }
     }
 
     // post: returns the number of nodes in the longest path from the root
@@ -104,9 +134,11 @@ public class MyTreeSet<E>
     // to a leaf of the tree
     private int height( TreeNode<E> root )
     {
-        // TODO: Complete method
-        
-        return 0;  // FIX THIS!!
+        if ( root == null)
+        {
+            return 0;
+        }
+        return max( 1 + height( root.getLeft()), 1 + height( root.getRight()));
     }
 
     // post: returns the number of nodes in the longest path in the tree
@@ -119,10 +151,13 @@ public class MyTreeSet<E>
     // post: returns the number of nodes in the longest path in the tree
     private int width( TreeNode<E> root )
     {
-        // TODO: Complete method
-        
-        return 0;  // FIX THIS!!
-    }
+        if ( root == null )
+        {
+            return 0;
+        }
+        return max( width( root.getLeft() ),
+            max( width( root.getRight() ), height( root.getLeft() ) + 1
+                + height( root.getRight() ) ) );    }
 
     // helper for height and width methods.
     // post: return the largest of a and b
@@ -137,7 +172,7 @@ public class MyTreeSet<E>
     // post: root of this tree is set to null
     public void clearTree()
     {
-        // TODO: Complete method
+        myRoot = null;
     }
 
     // post: root points to a tree that is a mirror image of the original tree.
@@ -150,7 +185,13 @@ public class MyTreeSet<E>
     // post: root points to a tree that is a mirror image of the original tree.
     private void interchange( TreeNode<E> root )
     {
-        // TODO: Complete method
+        if ( root == null )
+            return;
+        TreeNode<E> temp = root.getLeft();
+        root.setLeft( root.getRight() );
+        root.setRight( temp );
+        interchange( root.getLeft() );
+        interchange( root.getRight() );
     }
 
     // post: prints the data fields of nodes on the same level
@@ -165,7 +206,19 @@ public class MyTreeSet<E>
     // of the tree
     private void printLevel( TreeNode<E> root, int level )
     {
-        // TODO: Complete method
+        if ( root != null )
+        {
+            if ( level == 0 )
+            {
+                System.out.print( root.getValue() + " " );
+            }
+ 
+            else
+            {
+                printLevel( root.getLeft(), level - 1 );
+                printLevel( root.getRight(), level - 1 );
+            }
+        }
     }
 
     // post: returns true if ancestor is the ancestor of descendant
@@ -192,9 +245,20 @@ public class MyTreeSet<E>
     // if not found
     private TreeNode<E> findPtr( TreeNode<E> root, Comparable target )
     {
-        // TODO: Complete method
-        
-        return null; // FIX THIS!!
+        if ( root == null )
+            return null;
+        else if ( root.getValue().equals( target ) )
+        {
+            return root;
+        }
+        else if ( target.compareTo( root.getValue() ) > 0 )
+        {
+            return findPtr( root.getRight(), target );
+        }
+        else
+        {
+            return findPtr( root.getLeft(), target );
+        }
     }
 
     public int[] nodeCounts()
@@ -212,7 +276,17 @@ public class MyTreeSet<E>
     {
         int[] result = new int[2];
 
-        // TODO: Complete method
+        if ( root == null )
+        {
+            result[0] = 0;
+            result[1] = 0;
+            return result;
+        }
+ 
+        result[0] = countNodesHelper( root );
+ 
+        result[1] = Math.abs( countNodesHelper( root.getRight() )
+            - countNodesHelper( root.getLeft() ) );
         
         return result;
     }
@@ -228,7 +302,20 @@ public class MyTreeSet<E>
     // Precondition: the nodes of the tree rooted at root hold Integer values.
     private void accumulate( TreeNode<Integer> root )
     {
-        // TODO: Complete method
+        if ( root == null )
+            return;
+        accumulate( root.getLeft() );
+        accumulate( root.getRight() );
+        int s = root.getValue();
+        if ( root.getLeft() != null )
+        {
+            s += root.getLeft().getValue();
+        }
+        if ( root.getRight() != null )
+        {
+            s += root.getRight().getValue();
+        }
+        root.setValue( s );
     }
 
     public TreeNode<E> trim()
@@ -242,9 +329,21 @@ public class MyTreeSet<E>
     // (or null, if the original tree is empty or has only one node).
     private TreeNode<E> trim( TreeNode<E> root )
     {
-        // TODO: Complete method
-        
-        return null; // FIX THIS!!
+        if ( countNodesHelper( root ) <= 1 )
+            return null;
+ 
+        else if ( root.getLeft() == null && root.getRight() == null )
+        {
+            root = null;
+            return root;
+        }
+ 
+        else
+        {
+            root.setLeft( trim( root.getLeft() ) );
+            root.setRight( trim( root.getRight() ) );
+            return root;
+        }
     }
 
     public double minMaxAverage()
@@ -258,9 +357,19 @@ public class MyTreeSet<E>
     // root (assuming the nodes of the tree hold Integer values).
     private double minMaxAverage( TreeNode<Integer> root )
     {
-        // TODO: Complete method
-        
-        return 0.0; // FIX THIS!!
+        TreeNode<Integer> node = root;
+        while ( node.getLeft() != null )
+        {
+            node = node.getLeft();
+        }
+        double minimum = node.getValue();
+        node = root;
+        while ( node.getRight() != null )
+        {
+            node = node.getRight();
+        }
+        double maximum = node.getValue();
+        return ( maximum + minimum ) / 2;
     }
 
     // *************** non-exercise methods: *********************
