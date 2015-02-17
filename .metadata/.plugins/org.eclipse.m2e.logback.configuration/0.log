@@ -460,3 +460,4 @@ org.eclipse.jdt.core.JavaModelException: Index out of bounds
 2015-01-20 23:50:09,645 [main] WARN  o.e.r.c.r.p.ProcessableProposalFactory - Unknown JDT proposal type 'class org.eclipse.jdt.internal.ui.text.javadoc.JavadocInlineTagCompletionProposal' ('{@literal}'). Returning original proposal instead.
 2015-01-20 23:50:09,645 [main] WARN  o.e.r.c.r.p.ProcessableProposalFactory - Unknown JDT proposal type 'class org.eclipse.jdt.internal.ui.text.javadoc.JavadocInlineTagCompletionProposal' ('{@link}'). Returning original proposal instead.
 2015-01-20 23:50:09,646 [main] WARN  o.e.r.c.r.p.ProcessableProposalFactory - Unknown JDT proposal type 'class org.eclipse.jdt.internal.ui.text.javadoc.JavadocInlineTagCompletionProposal' ('{@value}'). Returning original proposal instead.
+2015-02-13 11:14:07,665 [main] WARN  o.e.r.i.c.rcp.TypeBindingAnalyzer - Can't handle %s as parent of completion location.
