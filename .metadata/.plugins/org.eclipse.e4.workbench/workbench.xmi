@@ -148,8 +148,8 @@
               <children xsi:type="advanced:Placeholder" xmi:id="_V2t_f7IuEeSN8_pEHxxxcw" elementId="org.eclipse.jdt.ui.PackageExplorer" ref="_V2uAsLIuEeSN8_pEHxxxcw"/>
             </children>
             <children xsi:type="basic:PartSashContainer" xmi:id="_V2t_gLIuEeSN8_pEHxxxcw" containerData="7379" selectedElement="_V2t_gbIuEeSN8_pEHxxxcw">
-              <children xsi:type="advanced:Placeholder" xmi:id="_V2t_gbIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.editorss" containerData="8321" ref="_V2uAnrIuEeSN8_pEHxxxcw"/>
-              <children xsi:type="basic:PartStack" xmi:id="_V2t_grIuEeSN8_pEHxxxcw" elementId="bottom" containerData="1679" selectedElement="_V2t_hLIuEeSN8_pEHxxxcw">
+              <children xsi:type="advanced:Placeholder" xmi:id="_V2t_gbIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.editorss" containerData="6584" ref="_V2uAnrIuEeSN8_pEHxxxcw"/>
+              <children xsi:type="basic:PartStack" xmi:id="_V2t_grIuEeSN8_pEHxxxcw" elementId="bottom" containerData="3416" selectedElement="_V2t_hrIuEeSN8_pEHxxxcw">
                 <tags>newtablook</tags>
                 <tags>org.eclipse.e4.secondaryDataStack</tags>
                 <children xsi:type="advanced:Placeholder" xmi:id="_V2t_g7IuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.views.ProblemView" ref="_V2uA37IuEeSN8_pEHxxxcw"/>
@@ -186,7 +186,7 @@
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_S4T28L2GEeSKg5cOAGQOHA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Giggle.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Giggle.java&quot; partName=&quot;Giggle.java&quot; title=&quot;Giggle.java&quot; tooltip=&quot;JMCh24_6Giggle/Giggle.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/JMCh24_6Giggle/Giggle.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;1650&quot;/>&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Giggle.java&quot; partName=&quot;Giggle.java&quot; title=&quot;Giggle.java&quot; tooltip=&quot;JMCh24_6Giggle/Giggle.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/JMCh24_6Giggle/Giggle.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;780&quot; selectionTopPixel=&quot;187&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -406,7 +406,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.eclipse.debug.ui.ProcessConsoleType.#ContextMenu</tags>
       </menus>
-      <toolbar xmi:id="_V2uA-7IuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.console.ConsoleView"/>
+      <toolbar xmi:id="_V2uA-7IuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.console.ConsoleView" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_V2umdbIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.views.BookmarkView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Bookmarks" iconURI="platform:/plugin/org.eclipse.ui.ide//icons/full/eview16/bkmrk_nav.gif" closeable="true">
       <tags>View</tags>
@@ -444,7 +444,7 @@
       <toolbar xmi:id="_V2umfrIuEeSN8_pEHxxxcw" elementId="org.eclipse.jdt.junit.ResultView" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_V2umf7IuEeSN8_pEHxxxcw" elementId="edu.duke.cs.ambient.snarfer.SnarferSiteView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Snarfer Site Browser" iconURI="platform:/plugin/edu.duke.cs.ambient.snarfer/icons/browser.gif" tooltip="" closeable="true">
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view/>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view/>"/>
       <tags>View</tags>
       <tags>categoryTag:Ambient</tags>
       <menus xmi:id="_V2umgLIuEeSN8_pEHxxxcw" elementId="edu.duke.cs.ambient.snarfer.SnarferSiteView">
@@ -487,7 +487,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:edu.duke.cs.ambient.snarfer.SnarferSiteView</tags>
       </menus>
-      <toolbar xmi:id="_V2umirIuEeSN8_pEHxxxcw" elementId="edu.duke.cs.ambient.snarfer.SnarferSiteView" visible="false"/>
+      <toolbar xmi:id="_V2umirIuEeSN8_pEHxxxcw" elementId="edu.duke.cs.ambient.snarfer.SnarferSiteView"/>
     </sharedElements>
     <trimBars xmi:id="_V2umkbIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.main.toolbar">
       <children xsi:type="menu:ToolBar" xmi:id="_V2umkrIuEeSN8_pEHxxxcw" elementId="group.file" toBeRendered="false">
@@ -496,13 +496,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_V2umlLIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_2C67oL1nEeSKg5cOAGQOHA" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_V2wdF7IuEeSN8_pEHxxxcw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_3c2p0MHXEeSY_5ek7L6qAQ" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_V2wdF7IuEeSN8_pEHxxxcw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_V2umorIuEeSN8_pEHxxxcw" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_V2umo7IuEeSN8_pEHxxxcw" elementId="additions" toBeRendered="false"/>
       </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_V2umwLIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.edit.text.actionSet.presentation" visible="false">
+      <children xsi:type="menu:ToolBar" xmi:id="_V2umwLIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.edit.text.actionSet.presentation">
         <tags>Draggable</tags>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_V2umyLIuEeSN8_pEHxxxcw" elementId="edu.duke.cs.ambient.B.checkin.actionSet" visible="false">
@@ -535,7 +535,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_V2um4LIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_2DBpUr1nEeSKg5cOAGQOHA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_V2wb1LIuEeSN8_pEHxxxcw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_3c9-kMHXEeSY_5ek7L6qAQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_V2wb1LIuEeSN8_pEHxxxcw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_V2um6rIuEeSN8_pEHxxxcw" elementId="org.eclipse.jdt.ui.ClassFileEditor" visible="false">
         <tags>Draggable</tags>
@@ -911,7 +911,7 @@
       <tags>platform:cocoa</tags>
     </bindings>
     <bindings xmi:id="_KLLgoLNzEeS9d5Y7tHhNZA" keySequence="ALT+COMMAND+SHIFT+ARROW_DOWN" command="_V2weurIuEeSN8_pEHxxxcw"/>
-    <bindings xmi:id="_1lHlUb1nEeSKg5cOAGQOHA" keySequence="COMMAND+CTRL+F" command="_V2xDL7IuEeSN8_pEHxxxcw"/>
+    <bindings xmi:id="_2-tVQcHXEeSY_5ek7L6qAQ" keySequence="COMMAND+CTRL+F" command="_V2xDL7IuEeSN8_pEHxxxcw"/>
   </bindingTables>
   <bindingTables xmi:id="_V2unxbIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.textEditorScope" bindingContext="_V2vODrIuEeSN8_pEHxxxcw">
     <bindings xmi:id="_V2unxrIuEeSN8_pEHxxxcw" keySequence="CTRL+ARROW_UP" command="_V2wdFLIuEeSN8_pEHxxxcw"/>
@@ -1209,7 +1209,7 @@
   <bindingTables xmi:id="_V2vOArIuEeSN8_pEHxxxcw" bindingContext="_V2vOd7IuEeSN8_pEHxxxcw"/>
   <bindingTables xmi:id="_V2vOA7IuEeSN8_pEHxxxcw" bindingContext="_V2vOeLIuEeSN8_pEHxxxcw"/>
   <bindingTables xmi:id="_V2vOBLIuEeSN8_pEHxxxcw" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_V2vOLrIuEeSN8_pEHxxxcw">
-    <bindings xmi:id="_1lIMYL1nEeSKg5cOAGQOHA" keySequence="M1+W" command="_V2xDMbIuEeSN8_pEHxxxcw"/>
+    <bindings xmi:id="_2-t8UMHXEeSY_5ek7L6qAQ" keySequence="M1+W" command="_V2xDMbIuEeSN8_pEHxxxcw"/>
   </bindingTables>
   <rootContext xmi:id="_V2vOBbIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.contexts.dialogAndWindow" contributorURI="platform:/plugin/org.eclipse.platform" name="In Dialogs and Windows" description="Either a dialog or a window is open">
     <children xmi:id="_V2vOBrIuEeSN8_pEHxxxcw" elementId="org.eclipse.ui.contexts.window" contributorURI="platform:/plugin/org.eclipse.platform" name="In Windows" description="A window is open">

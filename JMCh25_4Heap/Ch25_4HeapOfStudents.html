@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<title>Lab 10: 15-111 Fall 2002</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta content="Microsoft FrontPage 4.0" name="GENERATOR">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<style type="text/css">
+<!--
+code         { font-family: 'Courier New', Courier, monospace; font-size: 105% }
+pre          { font-family: 'Courier New', Courier, monospace; font-size: 105% }
+-->
+</style>
+</head>
+
+<body>
+
+<font face="verdana" color="green" size="+1">Lab: Java Methods Chapter 25.4 - A <b>Heap</b>
+of Trouble</font><br>
+<hr>
+<h4>Background</h4>
+<p>This lab is designed to give you experience in implementing a general
+comparable heap. The data structure that you use to store the heap is an array
+of <code>Objects</code>. Since a heap is tree with a few more constraints, this
+lab will also give you experience in using an alternate data structure to
+represent a tree.</p>
+<p>So now the cheesy story for the lab. Recently, Semester grades were given out
+for the Advanced Placement Computer Science class, George must now meet with the
+students to discuss their grades and advise them on the best course of action in
+light of their recent grades. George is swamped with work, so he has given you a
+list of all of the students and their grades so that you can sort them. Students
+that do poorly need to meet with George sooner than those that are doing well;
+if the students have the same grade then they must be ordered according to their
+Lynbrook id.</p>
+<hr size="5">
+<h4>Assignment</h4>
+<p>As you have learned, heaps are trees with the following additional
+constraints: heaps are <a href="http://mathworld.wolfram.com/CompleteBinaryTree.html">complete</a>
+and heaps maintain the heap order property. The heap order property states that
+the parent of a node will be less than its children if the heap is a <i>min-heap</i>,
+and the parent will be greater than its children if the heap is a <i>max-heap</i>.
+Insertion and deletion operations in a heap are O(log&nbsp;n) where n is the
+number of elements in your heap. Also, since the top element of the heap is the
+always going to be the smallest or largest element (depending on the type of
+heap), you can use a heap to sort its data by removing the top element until
+there are none left. The data in the sequence of removals will then be in
+increasing (decreasing) order. The running time of this sort, if you have n
+elements in the heap, will be O(n&nbsp;log&nbsp;n) since you will be performing
+n deletes which makes the cost to sort the heap n*[cost of one delete]. Since
+the cost of one delete is O(log&nbsp;n), the total cost is O(n&nbsp;log&nbsp;n).</p>
+<p>For this assignment you will have to make a min-heap of students. A student
+has a Lynbrook id, first name, last name, and semester grade.
+<p>The <code>Student</code> class is provided but it is incomplete - the <code>compareTo</code>
+method is not written. As indicated above, you must first compare the grade of
+each student, and if the grades are equal then compare Lynbrook id's and sort
+the students in increasing order by their Lynbrook id. Since Lynbrook id's are
+unique you will not have to sort by the first and last name fields.</p>
+<p>As the main objective of the lab is to learn about heaps, it would not be a
+bad guess that you will have implement one. The heap you are to implement is a
+min-heap of <code>Comparable</code>s. Your are provided with the majority of a
+&quot;Do-it-Yourself&quot; priority queue as described in Section 25.4 of Java
+Methods. The code for the class is provided in <code>HeapPriorityQueue.java</code>.
+It is your responsibility to supply the missing code for <code>reheapUp</code>, <code>reheapDown</code>
+and <code>toString</code>. Since <code>Student</code> implements the <code>Comparable</code>
+interface, you will be able to use this class for sorting your students.
+<p>In addition to the methods above, you must also print out grades in sorted
+order. The method you must complete is located in the main driver program (<code>HeapOfTrouble.java</code>)..</p>
+<p>Everything you need to know about heaps, at least for this assignment, should
+have been covered in class and the class notes, however if you need quick
+refresher, visit <a href="http://pages.cs.wisc.edu/~hasti/cs367-common/readings/liblitVersion/Priority-Queues/">this
+heap site</a>.<br>
+</p>
+<h4>Handing in your Solution</h4>
+<p>Submit your solution electronically.</p>
+
+</body>
+
+</html>
