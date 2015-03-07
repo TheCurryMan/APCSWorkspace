@@ -3,11 +3,11 @@ import java.util.*;
 /**
    Implements a priority queue based on a min-heap.
 
-   @author  TODO Your Name
-   @version Date
+   @author  Jessica Jiang
+   @version March 6th, 2015
 
-   @author Period - TODO Your Period
-   @author Assignment - TODO Assignment Name
+   @author Period - 4
+   @author Assignment - Heap
 
    @author Sources - TODO list collaborators
  */
@@ -103,12 +103,47 @@ public class HeapPriorityQueue
 
     public void reheapDown()
     {
-        // TODO complete method
+        for ( int i = 1; i <= numItems / 2; i++)
+        {
+            int a;
+            Object obj;
+ 
+            // compares the two children
+            if ( lessThan( items[2 * i + 1], items[2 * i] ) )
+                a = 2 * i + 1;
+            else
+                a = 2 * i;
+ 
+            // compare this to children
+            if ( lessThan( items[a], items[i] ) )
+            {
+                obj = items[i];
+                items[i] = items[a];
+                items[a] = obj;
+                i = a;
+            }
+            else
+                break;
+        }
     }
-
+ 
+ 
     public void reheapUp()
     {
-        // TODO complete method
+        for ( int i = numItems - 1; i > 1; i /= 2 )
+        {
+            Object obj;
+ 
+            // compare this to parent
+            if ( lessThan( items[i], items[i / 2] ) )
+            {
+                obj = items[i / 2];
+                items[i / 2] = items[i];
+                items[i] = obj;
+            }
+            else
+                break;
+        }
     }
 
     private void growCapacity()
@@ -124,8 +159,12 @@ public class HeapPriorityQueue
      */
     public String toString()
     {
-        // TODO complete method
-        return null; // Fix This!!!
+        String str = "";
+        for ( int i = 1; i < numItems - 1; i++ )
+        {
+            str += items[i];
+        }
+        return str;
     }
 }
 

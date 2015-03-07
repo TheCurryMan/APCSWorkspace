@@ -55,11 +55,14 @@ public class HeapOfTrouble
     }
 
     /**
-      TODO Write your method description here.
+      Sorts
      */
     public void sort()
     {
-        // TODO complete method
+        while ( !myHeapPQ.isEmpty() )
+        {
+            System.out.println( myHeapPQ.remove() );
+        }
     }
 
     public void printbyLevel()

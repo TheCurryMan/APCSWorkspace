@@ -35,8 +35,12 @@ public class Student implements Comparable
      */
     public int compareTo( Object obj )
     {
-        //TODO complete method
-        return -1; // Fix This!!!
+        Student test = (Student)obj;
+        if ( grade - test.grade == 0 )
+        {
+            return lynbrookId.compareTo( test.lynbrookId );
+        }
+        return grade - test.grade;
     }
 
     public Object clone()
