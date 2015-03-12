@@ -8,8 +8,8 @@ import java.util.Arrays;
     This program compares benchmarks for Selection Sort, Insertion Sort,
     Mergesort, Quicksort, and Heapsort
 
-    @author  TODO Your Name
-    @version TODO Date
+    @author  Jessica Jiang
+    @version March 9th, 2015
 
     @author Period: 1-7
     @author Assignment: JM Ch25.5 - Heapsort
