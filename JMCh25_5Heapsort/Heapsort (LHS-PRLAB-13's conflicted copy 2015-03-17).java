@@ -1,0 +1,69 @@
+/**
+   TODO Write a one-sentence summary of your class here.
+   TODO Follow it with additional details about its purpose, what abstraction
+   it represents, and how to use it.
+
+   @author  Jessica Jiang
+   @version March 10, 2015
+
+   @author  Period - 4
+   @author  Assignment - TODO Assignment Name
+
+   @author  Sources - TODO list collaborators
+ */
+public class Heapsort
+{
+    // Sorts a[0], ..., a[size-1] in ascending order
+    //   using the Mergesort algorithm
+    public static void sort(double[] a)
+    {
+        int n = a.length;
+        for ( int i = n / 2; i >= 1; i-- )
+            reheapDown( a, i, n );
+        while ( n > 1 )
+        {
+            // swap a[0] with a[n-1]:
+            double temp = a[0];
+            a[0] = a[n - 1];
+            a[n - 1] = temp;
+            n--;
+            reheapDown( a, 1, n );
+        }
+    }
+
+    // Should be private - made public for testing
+    public static void reheapDown(double[] a, int i, int n)
+    {
+        int c = i;
+        while ( 2 * c < n )
+        {
+            if ( 2 * c + 1 == n )
+                //TODO: SUBTRACT ONE FROM THIS ONWARDS
+                if ( a[c] > a[2 * c + 1] )
+                    return;
+                else
+                {
+                    double t = a[c];
+                    a[c] = a[2 * c + 1];
+                    a[2 * c + 1] = t;
+                    return;
+                }
+            if ( a[c] >= a[2 * c + 1] && a[c] >= a[2 * c + 2] )
+                return;
+            if ( a[2 * c + 1] > a[2 * c + 2] )
+            {
+                double t = a[c];
+                a[c] = a[2 * c + 1];
+                a[2 * c + 1] = t;
+                c = 2 * c + 1;
+            }
+            else
+            {
+                double t = a[c];
+                a[c] = a[2 * c + 2];
+                a[2 * c + 2] = t;
+                c = 2 * c + 2;
+            }
+        }
+    }
+}
