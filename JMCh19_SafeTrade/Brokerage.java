@@ -67,10 +67,18 @@ public class Brokerage implements Login
         }
     }
 
-    public void logout(Trader trader)
+
+    public void logout( Trader trader )
     {
-        
+        loggedTraders.remove( trader );
     }
+
+
+    public void placeOrder( TradeOrder order )
+    {
+        exchange.placeOrder( order );
+    }
+
 
     //
     // The following are for test purposes only

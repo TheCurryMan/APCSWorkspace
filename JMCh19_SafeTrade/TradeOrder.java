@@ -13,11 +13,57 @@ public class TradeOrder
     private int numShares;
     private double price;
 
-    // TODO complete class
-
-    //
-    // The following are for test purposes only
-    //
+    /**
+     * TODO Write your method description here.
+     * @return
+     */
+    public double getPrice()
+    {
+        return price;
+    }
+ 
+ 
+    public int getShares()
+    {
+        return numShares;
+    }
+ 
+ 
+    public String getSymbol()
+    {
+        return symbol;
+    }
+ 
+ 
+    public boolean isBuy()
+    {
+        return buyOrder == true;
+    }
+ 
+ 
+    public boolean isLimit()
+    {
+        return marketOrder == false;
+    }
+ 
+ 
+    public boolean isMarket()
+    {
+        return marketOrder == true;
+    }
+ 
+ 
+    public boolean isSell()
+    {
+        return buyOrder == false;
+    }
+ 
+ 
+    public void subtractShares( int shares )
+    {
+        numShares = numShares - shares;
+    }
+ 
     /**
      * <p>
      * A generic toString implementation that uses reflection to print names and

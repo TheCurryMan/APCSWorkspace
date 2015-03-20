@@ -1,6 +1,7 @@
 import java.lang.reflect.*;
 import java.util.*;
 
+
 /**
  * Represents a stock exchange. A <code>StockExchange</code> keeps a
  * <code>HashMap</code> of stocks, keyed by a stock symbol. It has methods to
@@ -10,9 +11,27 @@ import java.util.*;
 public class StockExchange
 {
     private Map<String, Stock> listedStocks;
-    
-    // TODO complete class
 
+
+    public StockExchange()
+    {
+        listedStocks = new HashMap<String, Stock>();
+    }
+
+    public String getQuote(String symbol)
+    {
+        return listedStocks.get(symbol).getQuote();
+    }
+    
+    public void listStock(String symbol, String name, double price)
+    {
+        listedStocks.put( symbol, new Stock(symbol, name, price) );
+    }
+    
+    public void placeOrder(TradeOrder order)
+    {
+        listedStocks.get( order.getSymbol() ).placeOrder(order);
+    }
     
     //
     // The following are for test purposes only
@@ -21,7 +40,8 @@ public class StockExchange
     {
         return listedStocks;
     }
-    
+
+
     /**
      * <p>
      * A generic toString implementation that uses reflection to print names and

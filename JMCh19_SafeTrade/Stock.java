@@ -16,7 +16,7 @@ public class Stock
     private PriorityQueue<TradeOrder> buyOrders, sellOrders;
 
     // TODO complete class
-
+    
     
     //
     // The following are for test purposes only
