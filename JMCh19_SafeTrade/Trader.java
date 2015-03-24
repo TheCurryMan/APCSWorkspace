@@ -1,27 +1,161 @@
 import java.lang.reflect.*;
 import java.util.*;
 
+
 /**
  * Represents a stock trader.
  */
 public class Trader implements Comparable<Trader>
 {
     private Brokerage brokerage;
+
     private String screenName, password;
+
     private TraderWindow myWindow;
+
     private Queue<String> mailbox;
 
-    // TODO complete class
+
+    public Trader( Brokerage brokerage, String name, String pswd )
+    {
+        this.brokerage = brokerage;
+        screenName = name;
+        password = pswd;
+    }
 
 
-    //
-    // The following are for test purposes only
+    /**
+     * Compares this trader to another by comparing their screen names case
+     * blind.
+     */
+    public int compareTo( Trader other )
+    {
+        return this.screenName.compareToIgnoreCase( other.getName() );
+    }
+
+
+    /**
+     * Indicates whether some other trader is "equal to" this one, based on
+     * comparing their screen names case blind.
+     */
+    public boolean equals( Object other )
+    {
+        // if ( !( other instanceof Trader ) )
+        // {
+        // throw new ClassCastException();
+        // }
+        return compareTo( (Trader)other ) == 0;
+    }
+
+
+    /**
+     * Returns the screen names for this trader
+     *
+     * @return the screen name for this trader
+     */
+    public String getName()
+    {
+        return this.screenName;
+    }
+
+
+    /**
+     * Returns the password for this trader
+     *
+     * @return the password for this trader
+     */
+    public String getPassword()
+    {
+        return this.password;
+    }
+
+
+    /**
+     * Requests a quote for a given stock symbol from the brokerage by calling
+     * brokerage's getQuote.
+     *
+     * @param symbol
+     *            string
+     */
+    public void getQuote( String symbol )
+    {
+        brokerage.getQuote( symbol, this );
+    }
+
+
+    /**
+     * Returns true if this trader has any messages in its mailbox.
+     *
+     * @return
+     */
+    public boolean hasMessages()
+    {
+        return mailbox.peek() != null;
+    }
+
+
+    /**
+     * Creates a new TraderWindow for this trader and saves a reference to it in
+     * myWindow.
+     */
+    public void openWindow()
+    {
+        myWindow = new TraderWindow( this );
+        while ( mailbox.peek() != null )
+        {
+            myWindow.showMessage( mailbox.remove() );
+        }
+    }
+
+
+    /**
+     * Places a given order with the brokerage by calling brokerage's
+     * placeOrder.
+     *
+     * @param order
+     */
+    public void placeOrder( TradeOrder order )
+    {
+        brokerage.placeOrder( order );
+    }
+
+
+    /**
+     * Logs out this trader.
+     */
+    public void quit()
+    {
+        brokerage.logout( this );
+        myWindow = null;
+    }
+
+
+    /**
+     * Adds msg to this trader's mailbox and displays all messages.
+     *
+     * @param msg
+     *            message
+     */
+    public void receiveMessage( String msg )
+    {
+        mailbox.add( msg );
+        if ( myWindow != null )
+        {
+            while ( mailbox.peek() != null )
+            {
+                myWindow.showMessage( mailbox.remove() );
+            }
+        }
+    }
+    
+
     //
     protected Queue<String> mailbox()
     {
         return mailbox;
     }
-    
+
+
     /**
      * <p>
      * A generic toString implementation that uses reflection to print names and

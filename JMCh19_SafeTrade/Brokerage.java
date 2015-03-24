@@ -8,9 +8,7 @@ import java.util.*;
 public class Brokerage implements Login
 {
     private Map<String, Trader> traders;
-
     private Set<Trader> loggedTraders;
-
     private StockExchange exchange;
 
 
@@ -20,6 +18,12 @@ public class Brokerage implements Login
     }
 
 
+    /**
+     * Tries to register a new trader with a given screen name and password.
+     * @param name
+     * @param password
+     * @return int
+     */
     public int addUser( String name, String password )
     {
         if ( name.length() >= 10 || name.length() <= 4 )
@@ -39,6 +43,13 @@ public class Brokerage implements Login
     }
 
 
+    /**
+     * Requests a quote for a given stock from the stock exachange and passes it
+     * along to the trader by calling trader's receiveMessage method.
+     * 
+     * @param symbol
+     * @param trader
+     */
     public void getQuote( String symbol, Trader trader )
     {
         trader.receiveMessage( exchange.getQuote( symbol ) );
@@ -63,6 +74,7 @@ public class Brokerage implements Login
         else
         {
             loggedTraders.add( check );
+            //TODO add stuff.
             return 0;
         }
     }

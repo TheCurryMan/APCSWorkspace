@@ -19,6 +19,14 @@ public class PriceComparator implements java.util.Comparator<TradeOrder>
     }
  
  
+    /** 
+     * Compares two trade orders.
+     * 
+     * @param - the first order
+     * @param - the second order
+     * 
+     * @returns - market or trade orders
+     */
     public int compare( TradeOrder order1, TradeOrder order2 )
     {
         if ( order1.isMarket() && order2.isMarket() )
@@ -41,7 +49,7 @@ public class PriceComparator implements java.util.Comparator<TradeOrder>
             }
             else
             {
-                return (int)( ( order2.getPrice() - order2.getPrice() ) * 100 );
+                return (int)( ( order2.getPrice() - order1.getPrice() ) * 100 );
             }
         }
     }

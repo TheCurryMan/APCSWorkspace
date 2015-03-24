@@ -1,5 +1,6 @@
 import java.lang.reflect.*;
 
+
 /**
  * Represents a buy or sell order for trading a given number of shares of a
  * specified stock.
@@ -7,63 +8,88 @@ import java.lang.reflect.*;
 public class TradeOrder
 {
     private Trader trader;
+
     private String symbol;
+
     private boolean buyOrder;
+
     private boolean marketOrder;
+
     private int numShares;
+
     private double price;
+
+
+    public TradeOrder( Trader t, String s, boolean b, boolean m, int n, double p )
+    {
+        trader = t;
+        symbol = s;
+        buyOrder = b;
+        marketOrder = m;
+        numShares = n;
+        price = p;
+    }
+
 
     /**
      * TODO Write your method description here.
+     * 
      * @return
      */
+    
+    public Trader getTrader()
+    {
+        return trader;
+    }
+    
     public double getPrice()
     {
         return price;
     }
- 
- 
+
+
     public int getShares()
     {
         return numShares;
     }
- 
- 
+
+
     public String getSymbol()
     {
         return symbol;
     }
- 
- 
+
+
     public boolean isBuy()
     {
         return buyOrder == true;
     }
- 
- 
+
+
     public boolean isLimit()
     {
         return marketOrder == false;
     }
- 
- 
+
+
     public boolean isMarket()
     {
         return marketOrder == true;
     }
- 
- 
+
+
     public boolean isSell()
     {
         return buyOrder == false;
     }
- 
- 
+
+
     public void subtractShares( int shares )
     {
         numShares = numShares - shares;
     }
- 
+
+
     /**
      * <p>
      * A generic toString implementation that uses reflection to print names and
