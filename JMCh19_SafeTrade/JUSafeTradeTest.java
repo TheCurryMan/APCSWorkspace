@@ -183,32 +183,108 @@ public class JUSafeTradeTest
     public void priceComparatorConstructor()
     {
         PriceComparator pc = new PriceComparator();
-        String toStr = to.toString();
+        String toStr = pc.toString();
         
-        assertTrue
+        //assertTrue
         
     }
-        
     
+    /**
+     * Trade tests:
+     */
+    private String screenName = "name";
+    private String password = "pswd";
+        
     
     // --Test Trader
+    @Test
     public void traderConstructor()
     {
-        Trader trade = new Trader(brokerage, screenName, password, myWindow, mailbox);
-        String toStr = to.toString();
+        Trader trade = new Trader(null, screenName, password);
+        String toStr = trade.toString();
 
         assertTrue( "<< Invalid Trader Constructor >>",
-                    toStr.contains( "Trader[Brokerage:" brokerage )
+                    toStr.contains( "Trader[Brokerage brokerage: null" )
                         && toStr.contains( "java.lang.String screenName:" + screenName )
-                        && toStr.contains( "boolean buyOrder:" + buyOrder )
-                        && toStr.contains( "boolean marketOrder:" + marketOrder )
-                        && toStr.contains( "int numShares:" + numShares )
-                        && toStr.contains( "double price:" + price ) );
-    
+                        && toStr.contains( "java.lang.String password:" + password ));
+                        //&& toStr.contains( "TraderWindow myWindow:" + myWindow )
+                        //&& toStr.contains( "Queue<String> mailbox:" + mailbox);
     }
     
-    // --Test Brokerage
     
+   @Test
+   public void TraderToString()
+   {
+       Trader trade = new Trader(null, screenName, password);
+       assertNotNull( trade.toString() );
+   }
+   
+   @Test
+   public void TraderGetName()
+   {
+       Trader trade = new Trader(null, screenName, password);
+       assertNotNull("<<Trader name: " + trade.getName());
+   }
+   
+   @Test
+   public void TraderGetPassword()
+   {
+       Trader trade = new Trader(null, screenName, password);
+       assertNotNull("<<Trader password: " + trade.getPassword());
+   }
+   
+   @Test
+   public void TraderGetQuote()
+   {
+       Trader trade = new Trader(null, screenName, password);
+       trade.getQuote( symbol );
+       assertNotNull("<<Trader quote: " + symbol);
+   }
+   
+   @Test
+   public void TraderCompareTo ()
+   {
+       Trader trade = new Trader(null, screenName, password);
+       //TODO:
+   }
+   
+   @Test
+   public void TraderHasMessages()
+   {
+       
+   }
+   
+   @Test
+   public void TraderOpenWindow()
+   {
+       
+   }
+   
+   @Test
+   public void TraderEquals ()
+   {
+       
+   }
+   
+   @Test
+   public void TraderPlaceOrder()
+   {
+       
+   }
+   
+   @Test
+   public void TraderQuit()
+   {
+       
+   }
+   
+   @Test
+   public void TraderReceiveMessage()
+   {
+       
+   }
+    
+    // --Test Brokerage
     // TODO your tests here
     
     

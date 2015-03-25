@@ -20,14 +20,14 @@ public class TradeOrder
     private double price;
 
 
-    public TradeOrder( Trader t, String s, boolean b, boolean m, int n, double p )
+    public TradeOrder( Trader myTrader, String mySymbol, boolean b, boolean m, int n, double p )
     {
-        trader = t;
-        symbol = s;
-        buyOrder = b;
-        marketOrder = m;
-        numShares = n;
-        price = p;
+        this.trader = myTrader;
+        this.symbol = mySymbol;
+        this.buyOrder = b;
+        this.marketOrder = m;
+        this.numShares = n;
+        this.price = p;
     }
 
 
