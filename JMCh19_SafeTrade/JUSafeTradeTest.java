@@ -10,6 +10,8 @@ import static org.junit.Assert.*;
 import junit.framework.JUnit4TestAdapter;
 
 /**
+ * 
+ * https://courses.cs.washington.edu/courses/cse143/11wi/eclipse-tutorial/junit.shtml
  * SafeTrade tests:
  *   TradeOrder
  *   PriceComparator
@@ -191,17 +193,24 @@ public class JUSafeTradeTest
     
     /**
      * Trade tests:
+     * 
+     * 
      */
-    private String screenName = "name";
-    private String password = "pswd";
-        
+    private String screenName = "jessica";
+    private String password = "jiang";
+    private Queue<String> mailbox = null;
+    private TraderWindow myWindow = null;
+    private Trader other = null;
+    private TradeOrder order = null;
+    private String msg = "message";
+    
     
     // --Test Trader
     @Test
     public void traderConstructor()
     {
-        Trader trade = new Trader(null, screenName, password);
-        String toStr = trade.toString();
+        Trader trader = new Trader(null, screenName, password);
+        String toStr = trader.toString();
 
         assertTrue( "<< Invalid Trader Constructor >>",
                     toStr.contains( "Trader[Brokerage brokerage: null" )
@@ -215,72 +224,85 @@ public class JUSafeTradeTest
    @Test
    public void TraderToString()
    {
-       Trader trade = new Trader(null, screenName, password);
-       assertNotNull( trade.toString() );
+       Trader trader = new Trader(null, screenName, password);
+       assertNotNull( trader.toString() );
    }
    
    @Test
    public void TraderGetName()
    {
-       Trader trade = new Trader(null, screenName, password);
-       assertNotNull("<<Trader name: " + trade.getName());
+       Trader trader = new Trader(null, screenName, password);
+       assertNotNull("<<Trader name: " + trader.getName());
    }
    
    @Test
    public void TraderGetPassword()
    {
-       Trader trade = new Trader(null, screenName, password);
-       assertNotNull("<<Trader password: " + trade.getPassword());
+       Trader trader = new Trader(null, screenName, password);
+       assertNotNull("<<Trader password: " + trader.getPassword());
    }
    
    @Test
    public void TraderGetQuote()
    {
-       Trader trade = new Trader(null, screenName, password);
-       trade.getQuote( symbol );
+       Trader trader = new Trader(null, screenName, password);
+       trader.getQuote( symbol );
        assertNotNull("<<Trader quote: " + symbol);
    }
    
    @Test
-   public void TraderCompareTo ()
+   public void TraderCompareTo()
    {
-       Trader trade = new Trader(null, screenName, password);
-       //TODO:
+       Trader trader = new Trader(null, screenName, password);
+       
    }
    
    @Test
    public void TraderHasMessages()
    {
+       Trader trader = new Trader(null, screenName, password);
+       assertNull("<<Trader's mailbox is: " + trader.hasMessages());
        
    }
    
    @Test
    public void TraderOpenWindow()
    {
-       
+       Trader trader = new Trader(null, screenName, password);
+       trader.openWindow();
+       //assertNull("<<Trader's mailbox is: "+ trader.openWindow());
    }
    
    @Test
-   public void TraderEquals ()
+   public void TraderEquals()
    {
+       Trader trader = new Trader(null, screenName, password);
+       trader.equals( other );
+       assertEquals( "<<Trader: equals " + other + ">>", other);
        
    }
    
    @Test
    public void TraderPlaceOrder()
    {
-       
+       Trader trader = new Trader(null, screenName, password);
+       trader.placeOrder( order );
+       assertNull("<<Trader: placeOrder " + order);
    }
    
    @Test
    public void TraderQuit()
    {
+       Trader trader = new Trader(null, screenName, password);
        
+       assertNull("<<Trader: quit " + trader.quit());
    }
    
    @Test
    public void TraderReceiveMessage()
    {
+       Trader trader = new Trader(null, screenName, password);
+       asserttrader.receiveMessage( msg );
        
    }
     
@@ -290,12 +312,98 @@ public class JUSafeTradeTest
     
     // --Test StockExchange
     
-    // TODO your tests here
-    
+   public void stockExchangeTest()
+   {
+       StockExchange s = new StockExchange();
+       s.listStock( "asdf", "QWERTY", .10 );
+       s.toString();
+       s.getQuote( "asdf" );
+
+       /*Map<String, Stock> listedStocks = new HashMap<String, Stock>();
+       listedStocks.put( "asdf", new Stock( "asdf", "QWERTY", .10 ) );
+
+       assertFalse( listedStocks.equals( s.getListedStocks() ) );
+       try
+       {
+           s.placeOrder( null );
+       }
+       catch ( Exception ex )
+       {
+       }
+       */
+
+   }
     
     // --Test Stock
     
-    // TODO your tests here
+   @Test
+   public void Stock()
+   {
+       Stock a = new Stock( null, null, 0 );
+       a.executeOrders();
+       a.getCompanyName();
+       a.getStockSymbol();
+       a.getLastPrice();
+       a.getVolume();
+       a.toString();
+       a.getLoPrice();
+       a.getHiPrice();
+       a.getBuyOrders();
+       a.getSellOrders();
+       a.getQuote();
+
+       try
+       {
+           a.placeOrder( null );
+       }
+       catch ( Exception e )
+       {
+
+       }
+
+   }
+   
+   /*
+    * @Test
+    public void Trader()
+    {
+        Trader t = new Trader( new Brokerage( new StockExchange() ),
+            "a",
+            "b" );
+        Trader v = new Trader( new Brokerage( null ), "asdf", "b" );
+        assertEquals( t.getName(), "a" );
+        assertEquals( t.getPassword(), "b" );
+        assertTrue( t.equals( t ) );
+        assertEquals( t.compareTo( v ), "a".compareTo( "asdf" ) );
+        t.toString();
+        try
+        {
+            t.equals( new StockExchange() );
+        }
+        catch ( Exception ex )
+        {
+        }
+        t.getQuote( null );
+        t.openWindow();
+        {
+            try
+            {
+                t.placeOrder( null );
+            }
+            catch ( Exception e )
+            {
+            }
+            assertFalse( t.hasMessages() );
+ 
+            t.receiveMessage( "hi" );
+ 
+            assertFalse( t.mailbox().equals( "a" ) );
+ 
+            t.receiveMessage( "aeiou" );
+            t.quit();
+        }
+    }
+    */
 
     
     // Remove block comment below to run JUnit test in console

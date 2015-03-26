@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.lang.reflect.*;
 import java.text.DecimalFormat;
@@ -30,8 +29,8 @@ public class Stock
         hiPrice = price;
         lastPrice = price;
         volume = 0;
-        sellOrders = new PriorityQueue<TradeOrder>( 0, new PriceComparator() );
-        buyOrders = new PriorityQueue<TradeOrder>( 0,
+        sellOrders = new PriorityQueue<TradeOrder>( 10, new PriceComparator() );
+        buyOrders = new PriorityQueue<TradeOrder>( 10,
             new PriceComparator( false ) );
     }
  
@@ -42,6 +41,11 @@ public class Stock
         {
             TradeOrder topBuy = buyOrders.peek();
             TradeOrder topSell = sellOrders.peek();
+            if ( topBuy == null || topSell == null )
+            {
+                break;
+            }
+ 
             double price = 0;
             int shares = 0;
             if ( topBuy.isLimit() && topSell.isLimit()
@@ -143,14 +147,14 @@ public class Stock
         if ( order.isBuy() )
         {
             buyOrders.add( order );
-            str += "Buy " + order.getSymbol() + " (" + order + ")" + "\n"
-                + order.getShares() + " shares at " + order.getPrice();
+            str += "Buy " + order.getSymbol() + " (" + this.companyName + ")"
+                + "\n" + order.getShares() + " shares at " + order.getPrice();
         }
         else
         {
             sellOrders.add( order );
-            str += "Sell " + order.getSymbol() + " (" + order + ") " + "\n"
-                + order.getShares() + " shares at market";
+            str += "Sell " + order.getSymbol() + " (" + this.companyName + ") "
+                + "\n" + order.getShares() + " shares at market";
         }
  
         order.getTrader().receiveMessage( str );
