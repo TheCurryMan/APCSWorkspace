@@ -12,7 +12,6 @@ public class StockExchange
 {
     private Map<String, Stock> listedStocks;
 
-
     public StockExchange()
     {
         listedStocks = new HashMap<String, Stock>();

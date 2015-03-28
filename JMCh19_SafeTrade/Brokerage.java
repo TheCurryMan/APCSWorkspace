@@ -1,36 +1,41 @@
 import java.lang.reflect.*;
 import java.util.*;
-
-
+ 
+ 
 /**
  * Represents a brokerage.
  */
 public class Brokerage implements Login
 {
     private Map<String, Trader> traders;
+ 
     private Set<Trader> loggedTraders;
+ 
     private StockExchange exchange;
-
-
+ 
+ 
     public Brokerage( StockExchange exchange )
     {
         this.exchange = exchange;
+        traders = new TreeMap<String, Trader>();
+        loggedTraders = new TreeSet<Trader>();
     }
-
-
+ 
+ 
     /**
      * Tries to register a new trader with a given screen name and password.
+     * 
      * @param name
      * @param password
      * @return int
      */
     public int addUser( String name, String password )
     {
-        if ( name.length() >= 10 || name.length() <= 4 )
+        if ( name.length() > 10 || name.length() < 4 )
         {
             return -1;
         }
-        else if ( password.length() >= 10 || password.length() <= 2 )
+        else if ( password.length() > 10 || password.length() < 2 )
         {
             return -2;
         }
@@ -41,8 +46,8 @@ public class Brokerage implements Login
         traders.put( name, new Trader( this, name, password ) );
         return 0;
     }
-
-
+ 
+ 
     /**
      * Requests a quote for a given stock from the stock exachange and passes it
      * along to the trader by calling trader's receiveMessage method.
@@ -54,8 +59,8 @@ public class Brokerage implements Login
     {
         trader.receiveMessage( exchange.getQuote( symbol ) );
     }
-
-
+ 
+ 
     public int login( String name, String password )
     {
         if ( traders.get( name ) == null )
@@ -73,25 +78,26 @@ public class Brokerage implements Login
         }
         else
         {
+            check.receiveMessage( "Welcome to SafeTrade!" );
+            check.openWindow();
             loggedTraders.add( check );
-            //TODO add stuff.
             return 0;
         }
     }
-
-
+ 
+ 
     public void logout( Trader trader )
     {
         loggedTraders.remove( trader );
     }
-
-
+ 
+ 
     public void placeOrder( TradeOrder order )
     {
         exchange.placeOrder( order );
     }
-
-
+ 
+ 
     //
     // The following are for test purposes only
     //
@@ -99,20 +105,20 @@ public class Brokerage implements Login
     {
         return traders;
     }
-
-
+ 
+ 
     protected Set<Trader> getLoggedTraders()
     {
         return loggedTraders;
     }
-
-
+ 
+ 
     protected StockExchange getExchange()
     {
         return exchange;
     }
-
-
+ 
+ 
     /**
      * <p>
      * A generic toString implementation that uses reflection to print names and
@@ -126,9 +132,9 @@ public class Brokerage implements Login
     {
         String str = this.getClass().getName() + "[";
         String separator = "";
-
+ 
         Field[] fields = this.getClass().getDeclaredFields();
-
+ 
         for ( Field field : fields )
         {
             try
@@ -140,10 +146,10 @@ public class Brokerage implements Login
             {
                 System.out.println( ex );
             }
-
+ 
             separator = ", ";
         }
-
+ 
         return str + "]";
     }
 }

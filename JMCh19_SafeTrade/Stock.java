@@ -41,13 +41,12 @@ public class Stock
         {
             TradeOrder topBuy = buyOrders.peek();
             TradeOrder topSell = sellOrders.peek();
+            double price = 0;
+            int shares = 0;
             if ( topBuy == null || topSell == null )
             {
                 break;
             }
- 
-            double price = 0;
-            int shares = 0;
             if ( topBuy.isLimit() && topSell.isLimit()
                 && topBuy.getPrice() > topSell.getPrice() )
             {
@@ -247,4 +246,5 @@ public class Stock
  
         return str + "]";
     }
+ 
 }

@@ -1,0 +1,302 @@
+import java.util.*;
+import java.lang.reflect.*;
+import java.text.DecimalFormat;
+
+
+/**
+ * Represents a stock in the SafeTrade project
+ */
+public class Stock
+{
+    public static DecimalFormat money = new DecimalFormat( "0.00" );
+
+    private String stockSymbol;
+
+    private String companyName;
+
+    private double loPrice, hiPrice, lastPrice;
+
+    private int volume;
+
+    private PriorityQueue<TradeOrder> buyOrders, sellOrders;
+
+
+    public Stock( String symbol, String name, double price )
+    {
+        stockSymbol = symbol;
+        companyName = name;
+        loPrice = price;
+        hiPrice = price;
+        lastPrice = price;
+        volume = 0;
+        sellOrders = new PriorityQueue<TradeOrder>( 10, new PriceComparator() );
+        buyOrders = new PriorityQueue<TradeOrder>( 10,
+            new PriceComparator( false ) );
+    }
+
+
+    public void executeOrders()
+    {
+        /*
+         * while ( true ) { TradeOrder topBuy = buyOrders.peek(); TradeOrder
+         * topSell = sellOrders.peek(); double price = 0; int shares = 0; if (
+         * topBuy == null || topSell == null ) { break; } if ( topBuy.isLimit()
+         * && topSell.isLimit() && topBuy.getPrice() > topSell.getPrice() ) {
+         * break; } if ( topBuy.isLimit() && topSell.isLimit() &&
+         * topBuy.getPrice() <= topSell.getPrice() ) { price =
+         * topSell.getPrice(); } else if ( topBuy.isLimit() &&
+         * topSell.isMarket() || topBuy.isMarket() && topSell.isLimit() ) { if (
+         * topBuy.isLimit() ) { price = topBuy.getPrice(); } else { price =
+         * topSell.getPrice(); } } else if ( topBuy.isMarket() &&
+         * topSell.isMarket() ) { price = lastPrice; }
+         * 
+         * if ( topBuy.getShares() <= topSell.getShares() ) { shares =
+         * topBuy.getShares(); } else { shares = topSell.getShares(); }
+         * 
+         * topBuy.subtractShares( shares ); topSell.subtractShares( shares );
+         * 
+         * if ( topBuy.getShares() == 0 ) { buyOrders.remove(); } if (
+         * topSell.getShares() == 0 ) { sellOrders.remove(); }
+         * 
+         * if ( price < loPrice ) { loPrice = price; } if ( price > hiPrice ) {
+         * hiPrice = price; }
+         * 
+         * volume += shares;
+         * 
+         * topBuy.getTrader().receiveMessage( "You bought: " + shares + " " +
+         * topBuy.getSymbol() + " at " + price + " amt " + shares price );
+         * 
+         * topSell.getTrader().receiveMessage( "You sold: " + shares + " " +
+         * topSell.getSymbol() + " at " + price + " amt " + shares price );
+         * 
+         * }
+         */
+        if ( buyOrders.isEmpty() || sellOrders.isEmpty() )
+        {
+            return;
+        }
+
+        TradeOrder buy = buyOrders.peek();
+        TradeOrder sell = sellOrders.peek();
+
+        Trader buyer = buy.getTrader();
+        Trader seller = sell.getTrader();
+
+        double sellPrice = 0;
+
+        if ( buy.isLimit() && sell.isLimit()
+            && buy.getPrice() >= sell.getPrice() )
+        {
+            sellPrice = sell.getPrice();
+        }
+
+        else if ( buy.isLimit() && sell.isMarket() )
+        {
+            sellPrice = buy.getPrice();
+        }
+
+        else if ( buy.isMarket() && sell.isLimit() )
+        {
+            sellPrice = sell.getPrice();
+        }
+
+        else if ( buy.isMarket() && sell.isMarket() )
+        {
+            sellPrice = lastPrice;
+        }
+
+        // Both are limit orders, sell price > buy price
+        else
+        {
+            return; // Nothing can be done
+        }
+
+        int numShares = Math.min( buy.getShares(), sell.getShares() );
+
+        buy.subtractShares( numShares );
+        sell.subtractShares( numShares );
+
+        // If buy order is completed
+        if ( buy.getShares() == 0 )
+        {
+            buyOrders.remove( buy );
+        }
+
+        // If sell order is completed
+        if ( sell.getShares() == 0 )
+        {
+            sellOrders.remove( sell );
+        }
+
+        // Update high and low prices
+        if ( sellPrice < loPrice )
+        {
+            loPrice = sellPrice;
+        }
+
+        if ( sellPrice > hiPrice )
+        {
+            hiPrice = sellPrice;
+        }
+
+        volume += numShares;
+        lastPrice = sellPrice;
+
+        buyer.receiveMessage( "You bought: " + numShares + " " + stockSymbol
+            + " at " + money.format( sellPrice ) + " amt "
+            + money.format( numShares * sellPrice ) );
+        seller.receiveMessage( "You sold: " + numShares + " " + stockSymbol
+            + " at " + money.format( sellPrice ) + " amt "
+            + money.format( numShares * sellPrice ) );
+
+        // Call self until no two pairable buy/sell orders remaining
+        if ( !buyOrders.isEmpty() && !sellOrders.isEmpty() )
+        {
+            executeOrders();
+        }
+    }
+
+
+    public String getQuote()
+    {
+        String quote = companyName + " (" + stockSymbol + ")" + "\n"
+            + "Price: " + lastPrice + " hi: " + hiPrice + " lo: " + loPrice
+            + " vol: " + volume + "\n";
+        String ask = "Ask: none";
+        String bid = "Bid: none";
+        if ( sellOrders.peek() != null )
+        {
+            ask = "Ask: " + sellOrders.peek().getPrice() + " size: "
+                + sellOrders.peek().getShares();
+        }
+        if ( buyOrders.peek() != null )
+        {
+            bid = "Bid: " + buyOrders.peek().getPrice() + " size: "
+                + buyOrders.peek().getShares();
+        }
+        return quote + ask + " " + bid;
+
+    }
+
+
+    public void placeOrder( TradeOrder order )
+    {
+        String str = "New Order: ";
+        if ( order == null )
+        {
+            //TODO probably print a stock not found error or something.
+            return;
+        }
+        if ( order.isBuy() )
+        {
+            buyOrders.add( order );
+            str += "Buy " + order.getSymbol() + " (" + this.companyName + 
+                            ")" + "\n" + order.getShares() + " shares at ";
+            if ( !order.isMarket() )
+            {
+                 str += order.getPrice();
+            }
+            else
+            {
+                str += "market";
+            }
+        }
+        else
+        {
+            sellOrders.add( order );
+            str += "Sell " + order.getSymbol() + " (" + this.companyName + ") "
+                + "\n" + order.getShares() + " shares at market";
+        }
+
+        order.getTrader().receiveMessage( str );
+        executeOrders();
+    }
+
+
+    //
+    // The following are for test purposes only
+    //
+
+    protected String getStockSymbol()
+    {
+        return stockSymbol;
+    }
+
+
+    protected String getCompanyName()
+    {
+        return companyName;
+    }
+
+
+    protected double getLoPrice()
+    {
+        return loPrice;
+    }
+
+
+    protected double getHiPrice()
+    {
+        return hiPrice;
+    }
+
+
+    protected double getLastPrice()
+    {
+        return lastPrice;
+    }
+
+
+    protected int getVolume()
+    {
+        return volume;
+    }
+
+
+    protected PriorityQueue<TradeOrder> getBuyOrders()
+    {
+        return buyOrders;
+    }
+
+
+    protected PriorityQueue<TradeOrder> getSellOrders()
+    {
+        return sellOrders;
+    }
+
+
+    /**
+     * <p>
+     * A generic toString implementation that uses reflection to print names and
+     * values of all fields <em>declared in this class</em>. Note that
+     * superclass fields are left out of this implementation.
+     * </p>
+     * 
+     * @return a string representation of this Stock.
+     */
+    public String toString()
+    {
+        String str = this.getClass().getName() + "[";
+        String separator = "";
+
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        for ( Field field : fields )
+        {
+            try
+            {
+                str += separator + field.getType().getName() + " "
+                    + field.getName() + ":" + field.get( this );
+            }
+            catch ( IllegalAccessException ex )
+            {
+                System.out.println( ex );
+            }
+
+            separator = ", ";
+        }
+
+        return str + "]";
+    }
+
+}
