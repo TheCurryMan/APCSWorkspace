@@ -19,20 +19,43 @@
 public class Digit
 {
     int base;
-    double value;
+    int value;
+
+
+
+    public Digit( int myValue, int myBase )
+    {
+        value = myValue;
+        base = myBase;
+    }
     
     public Digit()
     {
-        base = 10;
-        value = 0;
+        new Digit( 0, 10 );
     }
-    
-    public Digit (int myBase, int myValue)
+
+
+    public boolean increment()
     {
-        base = myBase;
-        value = myValue;
+        if ( value == base - 1 )
+        {
+            value = 0;
+            return true;
+        }
+        else
+        {
+            value++;
+            return false;
+        }
     }
-    
-    public String 
-    
+
+
+    public String toString()
+    {
+        if ( value < 10 )
+            return "" + value;
+        char c = (char)( value - 10 + 'A' );
+        return "" + c;
+    }
+
 }
