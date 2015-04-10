@@ -123,8 +123,15 @@ public class IntArrayWorker
     public int getCount( int target )
     {
         int count = 0;
-
-        // TODO: complete method
+        //
+        for (int[] rowArray: matrix)
+        {
+            for (int item: rowArray)
+            {
+                count = count + item;
+            }
+        }
+        
 
         return count;
     }

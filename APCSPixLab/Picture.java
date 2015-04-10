@@ -8,18 +8,17 @@ import java.util.List; // resolves problem with java.awt.List and java.util.List
 
 
 /**
- * A class that represents a picture. This class inherits from
- * SimplePicture and allows the student to add functionality to
- * the Picture class.
+ * A class that represents a picture. This class inherits from SimplePicture and
+ * allows the student to add functionality to the Picture class.
  *
- *  @author  TODO Your Name
- *  @version TODO the date
- *  @author  Period: TODO your period
- *  @author  Assignment: APCSPixLab - IntArrayWorker
+ * @author Jessica Jiang
+ * @version TODO the date
+ * @author Period: TODO your period
+ * @author Assignment: APCSPixLab - IntArrayWorker
  *
- *  @author  Sources: TODO List collaborators
- *  
- *  @author Barbara Ericson ericson@cc.gatech.edu
+ * @author Sources: TODO List collaborators
+ * 
+ * @author Barbara Ericson ericson@cc.gatech.edu
  */
 public class Picture extends SimplePicture
 {
@@ -31,16 +30,18 @@ public class Picture extends SimplePicture
     public Picture()
     {
         /*
-         * not needed but use it to show students the implicit call
-         * to super() child constructors always call a parent constructor
+         * not needed but use it to show students the implicit call to super()
+         * child constructors always call a parent constructor
          */
         super();
     }
 
+
     /**
      * Constructor that takes a file name and creates the picture
      * 
-     * @param fileName the name of the file to create the picture from
+     * @param fileName
+     *            the name of the file to create the picture from
      */
     public Picture( String fileName )
     {
@@ -48,11 +49,14 @@ public class Picture extends SimplePicture
         super( fileName );
     }
 
+
     /**
      * Constructor that takes the width and height
      * 
-     * @param height the height of the desired picture
-     * @param width the width of the desired picture
+     * @param height
+     *            the height of the desired picture
+     * @param width
+     *            the width of the desired picture
      */
     public Picture( int height, int width )
     {
@@ -60,11 +64,12 @@ public class Picture extends SimplePicture
         super( width, height );
     }
 
+
     /**
-     * Constructor that takes a picture and creates a copy
-     * of that picture
+     * Constructor that takes a picture and creates a copy of that picture
      * 
-     * @param copyPicture the picture to copy
+     * @param copyPicture
+     *            the picture to copy
      */
     public Picture( Picture copyPicture )
     {
@@ -72,15 +77,18 @@ public class Picture extends SimplePicture
         super( copyPicture );
     }
 
+
     /**
      * Constructor that takes a buffered image
      * 
-     * @param image the buffered image to use
+     * @param image
+     *            the buffered image to use
      */
     public Picture( BufferedImage image )
     {
         super( image );
     }
+
 
     // //////////////////// methods ///////////////////////////////////////
 
@@ -98,6 +106,7 @@ public class Picture extends SimplePicture
 
     }
 
+
     /**
      * Method to set the blue to 0
      */
@@ -113,14 +122,23 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
-     * Method that keeps only the blue color
-     *  - sets the red and green to zero
+     * Method that keeps only the blue color - sets the red and green to zero
      */
     public void keepOnlyBlue()
     {
-        // TODO: complete method
+        Pixel[][] pixels = this.getPixels2D();
+        for ( Pixel[] rowArray : pixels )
+        {
+            for ( Pixel pixelObj : rowArray )
+            {
+                pixelObj.setRed( 0 );
+                pixelObj.setGreen( 0 );
+            }
+        }
     }
+
 
     /**
      * Method that keeps only the red color
@@ -130,45 +148,80 @@ public class Picture extends SimplePicture
         // TODO: complete method
     }
 
+
     /**
-     * Method that keeps only the green color
+     * Method that keeps only the green color . Using the zeroBlue method as a
+     * starting point, write the method keepOnlyBlue that will keep only the
+     * blue values, that is, it will set the red and green values to zero.
+     * Create a class (static) method to test this new method in the class
+     * PictureTester. Be sure to call the new test method in the main method in
+     * PictureTester.
      */
     public void keepOnlyGreen()
     {
         // TODO: complete method
     }
 
+
     /**
-     * Method that negates the colors in the picture
+     * Method that negates the colors in the picture Write the negate method to
+     * negate all the pixels in a picture. To negate a picture, set the red
+     * value to 255 minus the current red value, the green value to 255 minus
+     * the current green value and the blue value to 255 minus the current blue
+     * value. Create a class (static) method to test this new method in the
+     * class PictureTester. Be sure to call the new test method in the main
+     * method in PictureTester.
      */
     public void negate()
     {
-        // TODO: complete method
+        Pixel[][] pixels = this.getPixels2D();
+        for ( Pixel[] rowArray : pixels )
+        {
+            for ( Pixel pixelObj : rowArray )
+            {
+                pixelObj.setRed( pixelObj.getRed() - 255 );
+                pixelObj.setGreen( pixelObj.getGreen() - 255 );
+            }
+        }
     }
+
 
     /**
      * Method that makes the picture all shades of gray
+     * 
+     * Write the grayscale method to turn the picture into shades of gray. Set
+     * the red, green, and blue values to the average of the current red, green,
+     * and blue values (add all three values and divide by 3). Create a class
+     * (static) method to test this new method in the class PictureTester. Be
+     * sure to call the new test method in the main method in PictureTester.
      */
     public void grayscale()
     {
         // TODO: complete method
     }
-    
+
+
     /**
      * Method to fix pictures taken underwater
+     * 
+     * Challenge — Explore the “water.jpg” picture in the images folder. Write a
+     * method fixUnderwater() to modify the pixel colors to make the fish easier
+     * to see. Create a class (static) method to test this new method in the
+     * class PictureTester. Be sure to call the new test method in the main
+     * method in PictureTester.
      */
     public void fixUnderwater()
     {
         Pixel[][] pixels = this.getPixels2D();
         // The nested enhanced for loops commented out here are equivalent to
         // the traditional nested for loops from the teacher guide
-//        for ( Pixel[] rowArray : pixels )
-//        {
-//            for ( Pixel pixel : rowArray )
-//            {
-//                pixel.setRed( pixel.getRed() * 3 );
-//            }
-//        }
+        // for ( Pixel[] rowArray : pixels )
+        // {
+        // for ( Pixel pixel : rowArray )
+        // {
+        // pixel.setRed( pixel.getRed() * 3 );
+        // }
+        // }
         // Code from the teacher guide that is equivalent to the nested enhanced
         // for loops above
         Pixel pixel = null;
@@ -182,9 +235,10 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
-     * Method that mirrors the picture around a vertical mirror
-     * in the center of the picture from left to right
+     * Method that mirrors the picture around a vertical mirror in the center of
+     * the picture from left to right
      */
     public void mirrorVertical()
     {
@@ -203,6 +257,7 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
      * Method that mirrors the picture around a vertical mirror in the center of
      * the picture from right to left
@@ -211,6 +266,7 @@ public class Picture extends SimplePicture
     {
         // TODO: complete method
     }
+
 
     /**
      * Method that mirrors the picture around a horizontal mirror in the center
@@ -221,6 +277,7 @@ public class Picture extends SimplePicture
         // TODO: complete method
     }
 
+
     /**
      * Method that mirrors the picture around a horizontal mirror in the center
      * of the picture from bottom to top
@@ -230,6 +287,7 @@ public class Picture extends SimplePicture
         // TODO: complete method
     }
 
+
     /**
      * Mirror around a mirror positioned on the diagonal line from bottom left
      * to top right
@@ -238,6 +296,7 @@ public class Picture extends SimplePicture
     {
         // TODO: complete method
     }
+
 
     /**
      * Mirror just part of a picture of a temple
@@ -263,6 +322,7 @@ public class Picture extends SimplePicture
             }
         }
     }
+
 
     /** Mirror just part of a picture of a snowman */
     public void mirrorArms()
@@ -296,6 +356,7 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /** Mirror just the gull */
     public void mirrorGull()
     {
@@ -316,14 +377,18 @@ public class Picture extends SimplePicture
             }
         }
     }
-    
+
+
     /**
      * copy from the passed fromPic to the specified startRow and startCol in
      * the current picture
      * 
-     * @param fromPic the picture to copy from
-     * @param startRow the start row to copy to
-     * @param startCol the start col to copy to
+     * @param fromPic
+     *            the picture to copy from
+     * @param startRow
+     *            the start row to copy to
+     * @param startCol
+     *            the start col to copy to
      */
     public void copy( Picture fromPic, int startRow, int startCol )
     {
@@ -344,6 +409,7 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
      * Method to create a collage of several pictures
      */
@@ -362,22 +428,35 @@ public class Picture extends SimplePicture
         this.mirrorVertical();
         this.write( "collage.jpg" );
     }
-    
+
+
     /**
      * copy from the passed fromPic to the specified startRow and startCol in
      * the current picture
      * 
-     * @param fromPic the picture to copy from
-     * @param fromStartRow the row to start coping from in the from picture
-     * @param fromStartCol the column to start copying from in the from picture
-     * @param fromEndRow the row to stop before in the from picture
-     * @param fromEndCol the column to stop before in the from picture
-     * @param toStartRow the row to start copying to
-     * @param toStartCol the column to start copying to
+     * @param fromPic
+     *            the picture to copy from
+     * @param fromStartRow
+     *            the row to start coping from in the from picture
+     * @param fromStartCol
+     *            the column to start copying from in the from picture
+     * @param fromEndRow
+     *            the row to stop before in the from picture
+     * @param fromEndCol
+     *            the column to stop before in the from picture
+     * @param toStartRow
+     *            the row to start copying to
+     * @param toStartCol
+     *            the column to start copying to
      */
-    public void copy( Picture fromPic, int fromStartRow, int fromStartCol,
-                      int fromEndRow, int fromEndCol, int toStartRow,
-                      int toStartCol )
+    public void copy(
+        Picture fromPic,
+        int fromStartRow,
+        int fromStartCol,
+        int fromEndRow,
+        int fromEndCol,
+        int toStartRow,
+        int toStartCol )
     {
         Pixel fromPixel = null;
         Pixel toPixel = null;
@@ -396,10 +475,12 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
      * Method to show large changes in color
      * 
-     * @param edgeDist the distance for finding edges
+     * @param edgeDist
+     *            the distance for finding edges
      */
     public void edgeDetection( int edgeDist )
     {
@@ -426,10 +507,12 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
      * Method to show large changes in color
      * 
-     * @param edgeDist the distance for finding edges
+     * @param edgeDist
+     *            the distance for finding edges
      */
     public void edgeDetection2( int edgeDist )
     {
@@ -466,12 +549,14 @@ public class Picture extends SimplePicture
 
         // TODO: complete method
     }
-    
+
+
     /**
      * Method to replace the blue background with the pixels in the newBack
      * picture
      * 
-     * @param newBack the picture to copy from
+     * @param newBack
+     *            the picture to copy from
      */
     public void chromakey( Picture newBack )
     {
@@ -493,11 +578,13 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
      * Hide a black and white message in the current picture by changing the red
      * to even and then setting it to odd if the message pixel is black
      * 
-     * @param messagePict the picture with a message
+     * @param messagePict
+     *            the picture with a message
      */
     public void encode( Picture messagePict )
     {
@@ -525,6 +612,7 @@ public class Picture extends SimplePicture
         }
         System.out.println( count );
     }
+
 
     /**
      * Method to decode a message hidden in the red value of the current picture
@@ -558,11 +646,13 @@ public class Picture extends SimplePicture
         return messagePicture;
     }
 
+
     /**
      * Method to return the count of the number of pixels with a red value
      * greater than the passed value
      * 
-     * @param value the value to compare to
+     * @param value
+     *            the value to compare to
      * @return the count
      */
     public int getCountRedOverValue( int value )
@@ -584,6 +674,7 @@ public class Picture extends SimplePicture
         return count;
     }
 
+
     /**
      * Method to set the red in the top half of the picture to half the original
      * value
@@ -602,10 +693,12 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
      * Method to clear the blue (set to 0) if it is over the passed value
      * 
-     * @param value the value to compare to
+     * @param value
+     *            the value to compare to
      */
     public void clearBlueOverValue( int value )
     {
@@ -624,10 +717,12 @@ public class Picture extends SimplePicture
         }
     }
 
+
     /**
      * Method to return the average value for the specified column
      * 
-     * @param col the column index to get the average from
+     * @param col
+     *            the column index to get the average from
      * @return the average of the values in that column
      */
     public int[] getAverageForColumn( int col )
@@ -646,6 +741,7 @@ public class Picture extends SimplePicture
         }
         return averageArray;
     }
+
 
     /*
      * Main method for testing - each class in Java can have a main method
