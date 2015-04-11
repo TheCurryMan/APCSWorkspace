@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="263" key="DIALOG_WIDTH"/>
+		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="136" key="DIALOG_Y_ORIGIN"/>
-		<item value="625" key="DIALOG_X_ORIGIN"/>
-		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+		<item value="380" key="DIALOG_HEIGHT"/>
+		<item value="371" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="nShares" key="selection"/>
+		<item value="getRed" key="selection"/>
 		<list key="findhistory">
+			<item value="getRed"/>
 			<item value="numb"/>
 			<item value="numShares"/>
 			<item value="sellPrice"/>
@@ -22,7 +23,6 @@
 			<item value="stockconstructor"/>
 			<item value="--Test Trader"/>
 			<item value="Stock"/>
-			<item value="traderWIndow"/>
 		</list>
 		<list key="replacehistory">
 			<item value="nShares"/>

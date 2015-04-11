@@ -145,7 +145,16 @@ public class IntArrayWorker
     {
         int largest = Integer.MIN_VALUE;
 
-        // TODO: complete method
+        for (int[] row : matrix)
+        {
+            for (int i : row)
+            {
+                if (i > largest)
+                {
+                    largest = i;
+                }
+            }
+        }
 
         return largest;
     }
@@ -160,7 +169,12 @@ public class IntArrayWorker
     {
         int total = 0;
 
-        // TODO: complete method
+        for (int[] row : matrix)
+        {
+            total += row[col];
+        }
+        
+        return total;
 
         return total;
     }
