@@ -123,15 +123,17 @@ public class IntArrayWorker
     public int getCount( int target )
     {
         int count = 0;
-        //
-        for (int[] rowArray: matrix)
+
+        for (int[] rowArray : matrix)
         {
-            for (int item: rowArray)
+            for (int i : rowArray)
             {
-                count = count + item;
+                if (i == target)
+                {
+                    count++;
+                }
             }
         }
-        
 
         return count;
     }
@@ -168,14 +170,12 @@ public class IntArrayWorker
     public int getColTotal( int col )
     {
         int total = 0;
-
+        
         for (int[] row : matrix)
         {
             total += row[col];
         }
         
-        return total;
-
         return total;
     }
   

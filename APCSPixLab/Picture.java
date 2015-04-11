@@ -11,7 +11,7 @@ import java.util.List; // resolves problem with java.awt.List and java.util.List
  * A class that represents a picture. This class inherits from SimplePicture and
  * allows the student to add functionality to the Picture class.
  *
- * @author Jessica Jiang
+ * @author TODO Your Name
  * @version TODO the date
  * @author Period: TODO your period
  * @author Assignment: APCSPixLab - IntArrayWorker
@@ -195,9 +195,9 @@ public class Picture extends SimplePicture
         {
             for ( Pixel pixelObj : rowArray )
             {
-                pixelObj.setRed( pixelObj.getRed() - 255 );
-                pixelObj.setGreen( pixelObj.getGreen() - 255 );
-                pixelObj.setBlue( pixelObj.getBlue() - 255 );
+                pixelObj.setRed( 255 - pixelObj.getRed() );
+                pixelObj.setGreen( 255 - pixelObj.getGreen());
+                pixelObj.setBlue( 255 - pixelObj.getBlue());
             }
         }
     }
@@ -231,7 +231,7 @@ public class Picture extends SimplePicture
     /**
      * Method to fix pictures taken underwater
      * 
-     * Challenge ó Explore the ìwater.jpgî picture in the images folder. Write a
+     * Challenge — Explore the “water.jpg” picture in the images folder. Write a
      * method fixUnderwater() to modify the pixel colors to make the fish easier
      * to see. Create a class (static) method to test this new method in the
      * class PictureTester. Be sure to call the new test method in the main
@@ -295,14 +295,14 @@ public class Picture extends SimplePicture
         Pixel leftPixel = null;
         Pixel rightPixel = null;
         int width = pixels[0].length;
-        for (int row = 0; row < pixels.length; row++)
+        for ( int row = 0; row < pixels.length; row++ )
         {
-          for (int col = 0; col < width / 2; col++)
-          {
-            leftPixel = pixels[row][col];
-            rightPixel = pixels[row][width - 1 - col];
-            leftPixel.setColor(rightPixel.getColor());
-          }
+            for ( int col = 0; col < width / 2; col++ )
+            {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][width - 1 - col];
+                leftPixel.setColor( rightPixel.getColor() );
+            }
         }
     }
 
@@ -317,13 +317,13 @@ public class Picture extends SimplePicture
         Pixel topPixel = null;
         Pixel bottomPixel = null;
         int height = pixels.length;
-        for (int row = 0; row < height; row++)
+        for ( int row = 0; row < height; row++ )
         {
-            for (int col = 0; col < pixels[0].length; col++)
+            for ( int col = 0; col < pixels[0].length; col++ )
             {
                 topPixel = pixels[row][col];
                 bottomPixel = pixels[height - 1 - row][col];
-                bottomPixel.setColor(topPixel.getColor());
+                bottomPixel.setColor( topPixel.getColor() );
             }
         }
     }
@@ -339,13 +339,13 @@ public class Picture extends SimplePicture
         Pixel topPixel = null;
         Pixel bottomPixel = null;
         int height = pixels.length;
-        for (int row = 0; row < height; row++)
+        for ( int row = 0; row < height; row++ )
         {
-            for (int col = 0; col < pixels[0].length; col++)
+            for ( int col = 0; col < pixels[0].length; col++ )
             {
                 topPixel = pixels[row][col];
                 bottomPixel = pixels[height - 1 - row][col];
-                topPixel.setColor(bottomPixel.getColor());
+                topPixel.setColor( bottomPixel.getColor() );
             }
         }
     }
@@ -360,18 +360,21 @@ public class Picture extends SimplePicture
         Pixel[][] pixels = this.getPixels2D();
         Pixel topRightPixel = null;
         Pixel bottomLeftPixel = null;
-        int maxLength;
-        if (pixels.length < pixels[0].length) { maxLength = pixels.length; }
-        else {maxLength = pixels[0].length; }
         
-        for (int row = 0; row < maxLength; row++)
+     
+        int max = pixels.length;
+        if (pixels[0].length < max)
+          max = pixels[0].length;
+        
+        
+        for (int row = 1; row < max; row++)
         {
-            for (int col = row; col < maxLength; col++)
-            {
-                topRightPixel = pixels[row][col];
-                bottomLeftPixel = pixels[col][row];
-                bottomLeftPixel.setColor(topRightPixel.getColor());
-            }
+          for (int col = 0; col < row; col++)
+          {
+            topRightPixel = pixels[row][col];
+            bottomLeftPixel = pixels[col][row];
+            bottomLeftPixel.setColor(topRightPixel.getColor());
+          }
         }
     }
 
@@ -625,7 +628,23 @@ public class Picture extends SimplePicture
         // the one below to black when the color distance is greater than
         // the specified edge distance.
 
-        // TODO: complete method
+        Pixel[][] copyPixels = copy.getPixels2D();
+        Pixel topPixel = null;
+        Pixel bottomPixel = null;
+        Color bottomColor = null;
+        for (int row = 0; row < copyPixels.length-1; row++)
+        {
+          for (int col = 0; col < copyPixels[0].length; col++)
+          {
+            topPixel = copyPixels[row][col];
+            bottomPixel = copyPixels[row+1][col];
+            bottomColor = bottomPixel.getColor();
+            if (topPixel.colorDistance(bottomColor) > 
+                edgeDist)
+              pixels[row][col].setColor(Color.BLACK);
+            
+          }
+        }
     }
 
 
