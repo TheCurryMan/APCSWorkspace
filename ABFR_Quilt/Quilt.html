@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)http://www.collegeboard.org/ap/computer-science/frq99/ab_q1.html -->
+<html>
+
+<head>
+<title>AP Computer Science - Quilt Free-Response</title>
+<meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+</head>
+
+<body bgcolor="#ffffff">
+
+<blockquote>
+  <h4>AP Computer Science<img align="absMiddle" alt="AP Computer Science Graphic" height="57" hspace="5" src="disk.gif" width="65"></h4>
+  <hr color="#000000" size="1">
+  <h2>Quilt</h2>
+  <p>A patchwork quilt can be made by sewing together many blocks, all of the
+  same size. Each individual block is made up of a number of small squares cut
+  from fabric. A block can be represented as a two-dimensional array of nonblank
+  characters, each of which stands for one small square of fabric. The entire
+  quilt can also be represented as a two-dimensional array of completed blocks.
+  The example below shows an array that represents a quilt made of 9 blocks (in
+  3 rows and 3 columns). Each block contains 20 small squares (of 4 rows by 5
+  columns). The quilt uses 2 different fabric squares, represented by the
+  characters 'x' and '.'. We consider only quilts where the main block
+  alternates with the same block flipped upside down (i.e., reflected about a
+  horizontal line through the block's center), as in the example below.</p>
+  <p><img alt="img4-a.gif (2974 bytes)" src="img4-a.gif" width="200" height="260"></p>
+  <p>Consider the problem of storing and displaying information about a quilt.</p>
+  <p>The class <tt>Quilt</tt>, whose declaration is shown below, is used to keep
+  track of the blocks for an entire quilt. Since the pattern is based on one
+  block, we only store that block and the number of rows and columns of blocks.
+  For the example shown above, we would store the upper left 4 x 5 block, 3 for
+  the number of rows of blocks in the quilt and 3 for the number of columns of
+  blocks in the quilt.</p>
+  <pre><font size="+1">    public class Quilt
+    {
+        char[][] myBlock;       // stores pattern for one block
+        int myRowsOfBlocks;     // number of rows of blocks in the quilt 
+        int myColsOfBlocks;     // number of columns of blocks in the quilt
+    
+        // precondition:   quiltBlock refers to an initialized quilt block,
+        //                 rowsOfBlocks > 0, colsOfBlocks > 0
+        // postcondition:  myRowsOfBlocks and myColsOfBlocks are initialized to
+        //                 the number of rows and columns of blocks that make up
+        //                 the quilt; myBlock has been initialized to the block
+        //                 pattern of quiltBlock.
+        public Quilt(char[][] quiltBlock, int rowsOfBlocks, int colsOfBlocks)
+        { /* to be completed in part (a) */ }
+    
+        // precondition:  startRow >= 0; startCol >= 0;
+        //                startRow + myBlock.length <= qmat.length;
+        //                startCol + myBlock[0].length <= qmat[0].length;
+        // postcondition: myBlock has been copied into the matrix
+        //                qmat with its upper-left corner at the position
+        //                startRow, startCol
+        public void placeBlock(int startRow, int startCol, char[][] qmat)
+        {   }
+    
+        // precondition:  startRow >= 0; startCol >= 0;
+        //  startRow + myBlock.length <= qmat.length;
+        //  startCol + myBlock[0].numcols() <= qmat[0].length;
+        //postcondition: a flipped version of myBlock has been copied into the
+        //  matrix qmat with its upper-left corner at the position
+        //  startRow, startCol
+        public void placeFlipped( int startRow, int startCol, char[][] qmat )
+        { /* to be completed in part (b) */ }
+    
+        public char[][] quiltToMat() // checkerboard alternation
+        { /* to be completed in part (c) */ }
+    }
+</font></pre>
+  <ol type="a">
+    <li>Write the code for the constructor that initializes a quilt, as started
+      below. The constructor copies the block pattern for the main block from a
+      two dimensional character array referenced by the parameter <tt>quiltBlock</tt>.
+	  You may assume the matrix is initialized and contains the characters representing
+      the pattern. For example, the array <tt>quiltBlock</tt>, which contains the
+      pattern for the first block in the quilt shown above, would look like
+      this:
+      <pre><font size="+1">     x...x 
+     .x.x.
+     ..x..
+     ..x..
+</font></pre>
+      <p>The constructor also sets the number of rows and columns of blocks
+      which make up the entire quilt.</p>
+      <p>Complete the constructor below. Assume that the constructor is called
+      only with parameters that satisfy its precondition.</p>
+      <pre><font size="+1">    // precondition:   quiltBlock refers to an initialized quilt block,
+    //                 rowsOfBlocks > 0, colsOfBlocks > 0
+    // postcondition:  myRowsOfBlocks and myColsOfBlocks are initialized to
+    //                 the number of rows and columns of blocks that make up
+    //                 the quilt; myBlock has been initialized to the block
+    //                 pattern of quiltBlock.
+    public Quilt(char[][] quiltBlock, int rowsOfBlocks, int colsOfBlocks)
+</font></pre>
+    <li>Write the private member method <tt>placeFlipped</tt>, as started
+      below. <tt>placeFlipped</tt> is intended to place a flipped (upside-down)
+      version of the block into the matrix <tt>qmat</tt> with the flipped
+      block's upper left corner located at the <tt>startRow</tt>, <tt>startCol</tt>
+      position in <tt>qmat</tt>.
+      <p>For example, if quilt <tt>quilt</tt> contains the block shown in part (a)
+      and if <tt>mat</tt> is a matrix large enough to hold the characters in the
+      whole quilt, then the call</p>
+      <blockquote>
+        <tt>
+        <p><font size="+1">quilt.placeFlipped(4, 10, mat)</font></tt></p>
+      </blockquote>
+      <p>would place the flipped version of <tt>quilt</tt>'s quilt block into matrix
+      <tt>mat</tt> as the third block in the second row of quilt blocks. This is
+      the block whose upper-left corner is at position <tt>mat[4][10]</tt>. In the
+      diagram below, the upper-left corner of the flipped block being placed
+      into <tt>mat</tt> is circled.</p>
+      <p><img alt="img1-ab.gif (2462 bytes)" src="img1-ab.gif" width="200" height="260"></p>
+      <p>You may adapt the code of the member method <tt>placeBlock</tt>,
+      given below, which places the block (not inverted) into the matrix <tt>qmat</tt>
+      with the block's upper left corner located at the <tt>startRow</tt>, <tt>startCol</tt>
+      position.</p>
+      <pre><font size="+1">    // precondition:  startRow >= 0; startCol >= 0;
+    //                startRow + myBlock.length <= qmat.length;
+    //                startCol + myBlock[0].length <= qmat[0].length;
+    // postcondition: myBlock has been copied into the matrix
+    //                qmat with its upper-left corner at the position
+    //                startRow, startCol
+    public void placeBlock(int startRow, int startCol, char[][] qmat)
+    {
+        for ( int r = 0; r < myBlock.length; r++ )
+        {
+            for ( int c = 0; c < myBlock[r].length; c++ )
+            {
+                qmat[startRow + r][startCol + c] = myBlock[r][c];
+            }
+        }
+    }
+</font></pre>
+      <p>Complete the member method <tt>placeFlipped</tt> below. Assume that <tt>placeFlipped</tt>
+      is called only with parameters that satisfy its precondition.</p>
+      <pre><font size="+1">    // precondition:  startRow >= 0; startCol >= 0;
+    //                startRow + myBlock.numrows() <= qmat.numrows();
+    //                startCol + myBlock.numcols() <= qmat.numcols();
+    // postcondition: a flipped version of myBlock has been copied into the
+    //                matrix qmat with its upper-left corner at the position
+    //                startRow, startCol
+    public void placeFlipped( int startRow, int startCol, char[][] qmat )
+    {
+        for ( int r = 0; r < myBlock.length; r++ )
+        {
+            for ( int c = 0; c < myBlock[r].length; c++ )
+            {
+
+            }
+        }
+    }
+</font></pre>
+    <li>Write the member method <tt>quiltToMat</tt>, as started below. <tt>quiltToMat</tt>
+      returns a matrix representing the whole quilt in such a way that the main
+      block alternates with the flipped version of the main block, as shown in
+      the original example. If <tt>quilt</tt> represents the example quilt, then the
+      call <tt>quilt.quiltToMat()</tt> would return a matrix of characters with the
+      given block placed starting with the upper-left corner at position 0, 0;
+      the flipped block placed with its upper-left corner at position 0, 5; the
+      given block placed with its upper-left corner at position 0, 10; the
+      flipped block placed with its upper-left corner at position 4, 0, and so
+      on.
+      <p>In writing <tt>quiltToMat</tt>, you may call functions <tt>placeBlock</tt>
+      and <tt>placeFlipped</tt> specified in part (b). Assume that <tt>placeBlock</tt>
+      and <tt>placeFlipped</tt> work as specified, regardless of what you wrote
+      in part (b).</p>
+      <p>Complete the member method <tt>quiltToMat</tt> below.</p>
+      <pre><font size="+1">    public char[][] quiltToMat()
+</font></pre>
+    </li>
+  </ol>
+  <p>&nbsp;</p>
+</blockquote>
+
+</body>
+
+</html>

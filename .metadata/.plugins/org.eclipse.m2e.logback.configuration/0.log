@@ -577,3 +577,4 @@ org.eclipse.jdt.core.JavaModelException: Index out of bounds
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895) [na:1.6.0_65]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918) [na:1.6.0_65]
 	at java.lang.Thread.run(Thread.java:695) [na:1.6.0_65]
+2015-04-27 23:08:49,702 [main] WARN  o.e.r.i.c.rcp.TypeBindingAnalyzer - Can't handle %s as parent of completion location.
