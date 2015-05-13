@@ -6,7 +6,7 @@ import javax.swing.WindowConstants;
 public class Window
 {
     JFrame frame = new JFrame();
-    XOButton buttons[] = new XOButton[9];
+    //XOButton buttons[] = new XOButton[9];
     
     public Grid(int width, int length) {
         frame.setLayout(new GridLayout(width,length));
