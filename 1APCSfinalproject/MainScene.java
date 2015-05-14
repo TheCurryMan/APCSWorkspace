@@ -19,20 +19,15 @@ import java.util.List;
  *
  * @author Sources: TODO
  */
-public class MainScene extends JPanel
+public class MainScene extends JPanel 
 {
     private static final Color BG_COLOR = new Color( 0xbbada0 );
     private static final String FONT_NAME = "Arial";
     private static final int TILE_SIZE = 64;
-
     private static final int TILES_MARGIN = 16;
-
     private Tile[] myTiles;
-
     boolean myWin = false;
-
     boolean myLose = false;
-
     int myScore = 0;
 
 
@@ -41,7 +36,6 @@ public class MainScene extends JPanel
         setFocusable( true );
         addKeyListener( new KeyAdapter()
         {
-            @Override
             public void keyPressed( KeyEvent e )
             {
                 if ( e.getKeyCode() == KeyEvent.VK_ESCAPE )
@@ -98,7 +92,9 @@ public class MainScene extends JPanel
         addTile();
     }
 
-
+  //================================================================================
+  // Movement
+  //================================================================================
     public void left()
     {
         boolean needAddTile = false;
@@ -110,6 +106,7 @@ public class MainScene extends JPanel
             if ( !needAddTile && !compare( line, merged ) )
             {
                 needAddTile = true;
+                
             }
         }
 
@@ -413,66 +410,6 @@ public class MainScene extends JPanel
         return arg * ( TILES_MARGIN + TILE_SIZE ) + TILES_MARGIN;
     }
 
-
-    static class Tile
-    {
-        int value;
-
-
-        public Tile()
-        {
-            this( 0 );
-        }
-
-
-        public Tile( int num )
-        {
-            value = num;
-        }
-
-
-        public boolean isEmpty()
-        {
-            return value == 0;
-        }
-
-
-        public Color getForeground()
-        {
-            return value < 16 ? new Color( 0x776e65 ) : new Color( 0xf9f6f2 );
-        }
-
-
-        public Color getBackground()
-        {
-            switch ( value )
-            {
-                case 2:
-                    return new Color( 0xeee4da );
-                case 4:
-                    return new Color( 0xede0c8 );
-                case 8:
-                    return new Color( 0xf2b179 );
-                case 16:
-                    return new Color( 0xf59563 );
-                case 32:
-                    return new Color( 0xf67c5f );
-                case 64:
-                    return new Color( 0xf65e3b );
-                case 128:
-                    return new Color( 0xedcf72 );
-                case 256:
-                    return new Color( 0xedcc61 );
-                case 512:
-                    return new Color( 0xedc850 );
-                case 1024:
-                    return new Color( 0xedc53f );
-                case 2048:
-                    return new Color( 0xedc22e );
-            }
-            return new Color( 0xcdc1b4 );
-        }
-    }
 
 
     public static void main( String[] args )

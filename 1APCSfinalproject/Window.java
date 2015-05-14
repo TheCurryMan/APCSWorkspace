@@ -8,12 +8,14 @@ public class Window
     JFrame frame = new JFrame();
     //XOButton buttons[] = new XOButton[9];
     
+    /**
     public Grid(int width, int length) {
         frame.setLayout(new GridLayout(width,length));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.pack(); 
         frame.setVisible(true);
     }
+    */
     
     public static void main(String args[]){
         JFrame myFrame = new JFrame("2048");
