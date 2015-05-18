@@ -1,9 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JButton;
-
-import java.awt.Color;
 import java.awt.GridLayout;
-
 import javax.swing.WindowConstants;
 
 public class Window
@@ -19,10 +16,6 @@ public class Window
         frame.setVisible(true);
     }
     */
-    private static final Color BG_COLOR = new Color( 0xbbada0 );
-    private static final String FONT_NAME = "Arial";
-    private static final int TILE_SIZE = 64;
-    private static final int TILES_MARGIN = 16;
     
     public static void main(String args[]){
         JFrame myFrame = new JFrame("2048");
