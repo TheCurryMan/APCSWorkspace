@@ -1,0 +1,55 @@
+import static org.junit.Assert;
+
+import java.util.regex.*;
+
+import org,junit.*;
+
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
+import java.util.regex.*;
+
+import org.junit.Test;
+
+/**
+ * @author Jessica Jiang
+ * @version May 5, 2015
+ * @author Sources: None
+ *
+ */
+public class Testclass
+{
+ // --Test TradeOrder
+    /**
+     * TradeOrder tests: TradeOrderConstructor - constructs TradeOrder and then
+     * compare toString TradeOrderGetTrader - compares value returned to
+     * constructed value TradeOrderGetSymbol - compares value returned to
+     * constructed value TradeOrderIsBuy - compares value returned to
+     * constructed value TradeOrderIsSell - compares value returned to
+     * constructed value TradeOrderIsMarket - compares value returned to
+     * constructed value TradeOrderIsLimit - compares value returned to
+     * constructed value TradeOrderGetShares - compares value returned to
+     * constructed value TradeOrderGetPrice - compares value returned to
+     * constructed value TradeOrderSubtractShares - subtracts known value &
+     * compares result returned by getShares to expected value
+     */
+    private int num = 2;
+    
+    
+    /** method to test TileConstructor */
+    public static void testTileConstructor()
+    {
+        Tile t = new Tile();
+        String toStr = t.toString();
+        
+        assertTrue("<< Invalid Tile Constructor >>", toStr.contains("Tile: null"
+            + "") && toStr.contains( "int num:" + num ));
+    }
+    
+    public static void main( String[] args )
+    {
+        testTileConstructor();
+    }
+    
+}

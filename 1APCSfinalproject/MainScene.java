@@ -1,5 +1,7 @@
 import javax.swing.*;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -19,10 +21,11 @@ import java.util.List;
  *
  * @author Sources: TODO
  */
-public class MainScene extends JPanel 
+public class MainScene extends JPanel
 {
-    private static final Color BG_COLOR = new Color( 0xbbada0 );
-    private static final String FONT_NAME = "Arial";
+    private static final Color BG_COLOR = Color.BLACK;
+    //background color of playing screen
+    private static final String FONT_NAME = "Questrial";
     private static final int TILE_SIZE = 64;
     private static final int TILES_MARGIN = 16;
      
@@ -31,10 +34,11 @@ public class MainScene extends JPanel
     boolean myLose = false;
     int myScore = 0;
 
-
     public MainScene()
     {
-        setFocusable( true );
+        setFocusable( true ); //focusable flag indicates whether a component 
+        //can gain the focus if it is requested to do so
+        
         addKeyListener( new KeyAdapter()
         {
             public void keyPressed( KeyEvent e )
@@ -177,18 +181,27 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * TODO Write your method description here.
+     * @return
+     */
     private boolean isFull()
     {
         return availableSpace().size() == 0;
     }
 
 
-    boolean canMove()
+    /**
+     * Boolean to see if there are any available moves left
+     * @return
+     */
+    public boolean canMove()
     {
         if ( !isFull() )
         {
             return true;
         }
+        //iterates through the entire grid to check the free space
         for ( int x = 0; x < 4; x++ )
         {
             for ( int y = 0; y < 4; y++ )
@@ -205,6 +218,12 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * TODO Write your method description here.
+     * @param line1
+     * @param line2
+     * @return
+     */
     private boolean compare( Tile[] line1, Tile[] line2 )
     {
         if ( line1 == line2 )
@@ -226,18 +245,24 @@ public class MainScene extends JPanel
         return true;
     }
 
-
+    
+    /**
+     * TODO Write your method description here.
+     * @param angle
+     * @return
+     */
     private Tile[] rotate( int angle )
     {
         Tile[] newTiles = new Tile[4 * 4];
-        int offsetX = 3, offsetY = 3;
+        int xoff = 3;
+        int yoff = 3;
         if ( angle == 90 )
         {
-            offsetY = 0;
+            yoff = 0;
         }
         else if ( angle == 270 )
         {
-            offsetX = 0;
+            xoff = 0;
         }
 
         double rad = Math.toRadians( angle );
@@ -247,15 +272,21 @@ public class MainScene extends JPanel
         {
             for ( int y = 0; y < 4; y++ )
             {
-                int newX = ( x * cos ) - ( y * sin ) + offsetX;
-                int newY = ( x * sin ) + ( y * cos ) + offsetY;
+                int newX = ( x * cos ) - ( y * sin ) + xoff;
+                int newY = ( x * sin ) + ( y * cos ) + yoff;
                 newTiles[( newX ) + ( newY ) * 4] = tileAt( x, y );
             }
         }
         return newTiles;
     }
+    
 
 
+    /**
+     * TODO Write your method description here.
+     * @param oldLine
+     * @return
+     */
     private Tile[] moveLine( Tile[] oldLine )
     {
         LinkedList<Tile> l = new LinkedList<Tile>();
@@ -281,6 +312,11 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * TODO Write your method description here.
+     * @param oldLine
+     * @return
+     */
     private Tile[] mergeLine( Tile[] oldLine )
     {
         LinkedList<Tile> list = new LinkedList<Tile>();
@@ -312,6 +348,11 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * TODO Write your method description here.
+     * @param l
+     * @param s
+     */
     private static void ensureSize( java.util.List<Tile> l, int s )
     {
         while ( l.size() != s )
@@ -321,6 +362,11 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * TODO Write your method description here.
+     * @param index
+     * @return
+     */
     private Tile[] getLine( int index )
     {
         Tile[] result = new Tile[4];
@@ -338,7 +384,6 @@ public class MainScene extends JPanel
     }
 
 
-    @Override
     public void paint( Graphics g )
     {
         super.paint( g );
@@ -352,8 +397,8 @@ public class MainScene extends JPanel
             }
         }
     }
-
-
+    
+    
     private void drawTile( Graphics g2, Tile tile, int x, int y )
     {
         Graphics2D g = ( (Graphics2D)g2 );
@@ -381,30 +426,33 @@ public class MainScene extends JPanel
             g.drawString( s, xOffset + ( TILE_SIZE - w ) / 2, yOffset
                 + TILE_SIZE - ( TILE_SIZE - h ) / 2 - 2 );
 
+        //=================================================================
+        // Winning/Losing Conditions
+        //===================================================================
         if ( myWin || myLose )
         {
-            g.setColor( new Color( 255, 255, 255, 30 ) );
+            //TODO://edit window GUI
+            g.setColor( Color.lightGray ); //sets the background color of the last screen
             g.fillRect( 0, 0, getWidth(), getHeight() );
-            g.setColor( new Color( 78, 139, 202 ) );
+            g.setColor( Color.white ); //sets the color of the text
             g.setFont( new Font( FONT_NAME, Font.BOLD, 48 ) );
             if ( myWin )
             {
-                g.drawString( "You won!", 68, 150 );
+                g.drawString( "You won!", 65, 150 );
             }
             if ( myLose )
             {
-                g.drawString( "Game over!", 50, 130 );
-                g.drawString( "You lose!", 64, 200 );
+                g.drawString( "Game over!", 50 , 130 );
             }
             if ( myWin || myLose )
             {
-                g.setFont( new Font( FONT_NAME, Font.PLAIN, 16 ) );
+                g.setFont( new Font( FONT_NAME, Font.ITALIC, 16 ) );
                 g.setColor( new Color( 128, 128, 128, 128 ) );
-                g.drawString( "Press ESC to play again", 80, getHeight() - 40 );
+                g.drawString( "Press ESC to play again", 80, getHeight() - 60 );
             }
         }
         g.setFont( new Font( FONT_NAME, Font.PLAIN, 18 ) );
-        g.drawString( "Score: " + myScore, 200, 365 );
+        g.drawString( "Score: " + myScore, getWidth() - 150, getHeight() - 20 );
 
     }
 
@@ -414,19 +462,4 @@ public class MainScene extends JPanel
         return arg * ( TILES_MARGIN + TILE_SIZE ) + TILES_MARGIN;
     }
 
-
-
-    public static void main( String[] args )
-    {
-        JFrame game = new JFrame();
-        game.setTitle( "2048 Game" );
-        game.setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
-        game.setSize( 340, 400 );
-        game.setResizable( false );
-
-        game.add( new MainScene() );
-
-        game.setLocationRelativeTo( null );
-        game.setVisible( true );
-    }
 }

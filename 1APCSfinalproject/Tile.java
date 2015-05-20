@@ -48,6 +48,7 @@ public class Tile
         {
             case 2:
                 return new Color( 0xeee4da );
+                return 
             case 4:
                 return new Color( 0xede0c8 );
             case 8:
@@ -72,5 +73,6 @@ public class Tile
         return new Color( 0xcdc1b4 );
     }
 
+    
 
 }

@@ -1,0 +1,38 @@
+package snippet;
+
+public class Snippet
+{
+    @Test
+        public void tradeOrderConstructor()
+        {
+            TradeOrder to = new TradeOrder( null,
+                symbol,
+                buyOrder,
+                marketOrder,
+                numShares,
+                price );
+            String toStr = to.toString();
+    
+            assertTrue( "<< Invalid TradeOrder Constructor >>",
+                toStr.contains( "TradeOrder[Trader trader:null" )
+                    && toStr.contains( "java.lang.String symbol:" + symbol )
+                    && toStr.contains( "boolean buyOrder:" + buyOrder )
+                    && toStr.contains( "boolean marketOrder:" + marketOrder )
+                    && toStr.contains( "int numShares:" + numShares )
+                    && toStr.contains( "double price:" + price ) );
+        }
+    
+    
+        @Test
+        public void tradeOrderToString()
+        {
+            TradeOrder to = new TradeOrder( null,
+                symbol,
+                buyOrder,
+                marketOrder,
+                numShares,
+                price );
+            assertNotNull( to.toString() );
+        }
+}
+

@@ -1,0 +1,86 @@
+import static org.junit.Assert;
+import java.util.regex.*;
+import org,junit.*;
+
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
+import java.util.regex.*;
+
+import org.junit.Test;
+
+/**
+ * @author Jessica Jiang
+ * @version May 5, 2015
+ * @author Sources: None
+ *
+ */
+public class Testclass
+{
+ // --Test TradeOrder
+    /**
+     * TradeOrder tests: TradeOrderConstructor - constructs TradeOrder and then
+     * compare toString TradeOrderGetTrader - compares value returned to
+     * constructed value TradeOrderGetSymbol - compares value returned to
+     * constructed value TradeOrderIsBuy - compares value returned to
+     * constructed value TradeOrderIsSell - compares value returned to
+     * constructed value TradeOrderIsMarket - compares value returned to
+     * constructed value TradeOrderIsLimit - compares value returned to
+     * constructed value TradeOrderGetShares - compares value returned to
+     * constructed value TradeOrderGetPrice - compares value returned to
+     * constructed value TradeOrderSubtractShares - subtracts known value &
+     * compares result returned by getShares to expected value
+     */
+    private String symbol = "GGGL";
+
+    /*
+    @Test
+    public void tradeOrderConstructor()
+    {
+        TradeOrder to = new TradeOrder( null,
+            symbol,
+            buyOrder,
+            marketOrder,
+            numShares,
+            price );
+        String toStr = to.toString();
+
+        assertTrue( "<< Invalid TradeOrder Constructor >>",
+            toStr.contains( "TradeOrder[Trader trader:null" )
+                && toStr.contains( "java.lang.String symbol:" + symbol )
+                && toStr.contains( "boolean buyOrder:" + buyOrder )
+                && toStr.contains( "boolean marketOrder:" + marketOrder )
+                && toStr.contains( "int numShares:" + numShares )
+                && toStr.contains( "double price:" + price ) );
+    }
+
+
+    @Test
+    public void tradeOrderToString()
+    {
+        TradeOrder to = new TradeOrder( null,
+            symbol,
+            buyOrder,
+            marketOrder,
+            numShares,
+            price );
+        assertNotNull( to.toString() );
+    }
+
+
+    @Test
+    public void MainSceneConstructor()
+    {
+        
+    }
+    */
+    
+    // --Test MainScene
+    /**
+     * MainScene tests: 
+     * MainScene Constructor - constructs the MainScene
+     * 
+     */
+    
+}

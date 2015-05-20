@@ -1,0 +1,63 @@
+
+/**
+ *  TODO Write a one-sentence summary of your class here.
+ *  TODO Follow it with additional details about its purpose, what abstraction
+ *  it represents, and how to use it.
+ *
+ *  @author  jessicajiang
+ *  @version May 13, 2015
+ *  @author  Period: TODO
+ *  @author  Assignment: 1APCSfinalproject
+ *
+ *  @author  Sources: TODO
+ */
+public class Grid
+{
+  //==========================================================================
+    // Movement
+    //==========================================================================
+      public void left()
+      {
+          boolean needAddTile = false;
+          for ( int i = 0; i < 4; i++ )
+          {
+              Tile[] line = getLine( i );
+              Tile[] merged = mergeLine( moveLine( line ) );
+              setLine( i, merged );
+              if ( !needAddTile && !compare( line, merged ) )
+              {
+                  needAddTile = true;
+                  
+              }
+          }
+
+          if ( needAddTile )
+          {
+              addTile();
+          }
+      }
+
+
+      public void right()
+      {
+          myTiles = rotate( 180 );
+          left();
+          myTiles = rotate( 180 );
+      }
+
+
+      public void up()
+      {
+          myTiles = rotate( 270 );
+          left();
+          myTiles = rotate( 90 );
+      }
+
+
+      public void down()
+      {
+          myTiles = rotate( 90 );
+          left();
+          myTiles = rotate( 270 );
+      }
+}
