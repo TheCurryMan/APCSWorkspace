@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="JUGameTests" project="1APCSfinalproject" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="JUGameTests" time="0.872">
+    <testcase name="TileGetForeground" classname="JUGameTests" time="0.445"/>
+    <testcase name="MainSceneConstructorTest" classname="JUGameTests" time="0.427"/>
+    <testcase name="TileConstructorTest" classname="JUGameTests" time="0.0"/>
+    <testcase name="TileIsEmpty" classname="JUGameTests" time="0.0"/>
+  </testsuite>
+</testrun>

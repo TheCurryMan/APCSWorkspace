@@ -1,0 +1,10 @@
+
+public class GameGrid
+{
+    private static final String FONT_NAME = "Georgia";
+    //font of the numbers of the tiles
+    private static final int TILE_SIZE = 64;
+    private static final int TILES_MARGIN = 16;
+    
+    private Tile[] myTiles;
+}

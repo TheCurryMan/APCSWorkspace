@@ -1,4 +1,10 @@
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 
 /**
@@ -18,18 +24,32 @@ public class Tile
     public int value;
 
 
+    /**
+     * Creates the tile
+     */
     public Tile()
     {
         this( 0 );
     }
 
 
+    /**
+     * Creates a tile with a number inside it
+     * 
+     * @param num
+     */
     public Tile( int num )
     {
         value = num;
     }
 
 
+    /**
+     * Specifies whether or not the tile is "empty" - that is, not having a
+     * value at all
+     * 
+     * @return
+     */
     public boolean isEmpty()
     {
         return value == 0;
@@ -38,17 +58,18 @@ public class Tile
 
     public Color getForeground()
     {
-        return value < 16 ? new Color( 0x776e65 ) : new Color( 0xf9f6f2 );
+        //return value < 16 ? Color.GRAY : Color.LIGHT_GRAY;
+        return Color.BLACK;
     }
 
 
     public Color getBackground()
     {
+        //BufferedImage img = null;
         switch ( value )
         {
             case 2:
                 return new Color( 0xeee4da );
-                return 
             case 4:
                 return new Color( 0xede0c8 );
             case 8:
@@ -70,9 +91,8 @@ public class Tile
             case 2048:
                 return new Color( 0xedc22e );
         }
+        
         return new Color( 0xcdc1b4 );
     }
-
-    
-
+    //} // comment out later
 }

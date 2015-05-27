@@ -1,0 +1,19 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+//assertTrue, assertEquals
+public class GameTests
+{
+
+    @Test 
+    public void TileConstructorTest()
+    {
+        Tile t = new Tile();
+        assertEquals("<<Invalid Default Tile Constructor>>", t.value, 0);
+        fail( "Not yet implemented" );
+    }
+    
+    
+
+}

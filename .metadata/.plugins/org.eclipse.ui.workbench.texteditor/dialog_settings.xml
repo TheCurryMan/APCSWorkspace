@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="263" key="DIALOG_WIDTH"/>
-		<item value="136" key="DIALOG_Y_ORIGIN"/>
+		<item value="144" key="DIALOG_Y_ORIGIN"/>
+		<item value="695" key="DIALOG_X_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="371" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="negate" key="selection"/>
+		<item value="left" key="selection"/>
 		<list key="findhistory">
+			<item value="left"/>
+			<item value="add"/>
+			<item value="press esc"/>
+			<item value="game over"/>
+			<item value="color"/>
+			<item value="BG_COLOR"/>
+			<item value="TILE_SIZE"/>
 			<item value="negate"/>
-			<item value="mirrorDiagonal"/>
-			<item value="todo"/>
-			<item value="getRed"/>
-			<item value="numb"/>
-			<item value="numShares"/>
-			<item value="sellPrice"/>
-			<item value="placeOrder"/>
 		</list>
 		<list key="replacehistory">
+			<item value="backgroundcolor"/>
+			<item value="tilesize"/>
 			<item value="nShares"/>
 			<item value="price"/>
 			<item value="a"/>
 			<item value="obj"/>
 			<item value="num"/>
 			<item value="count"/>
-			<item value="s"/>
-			<item value="myStack"/>
 		</list>
 	</section>
 </section>

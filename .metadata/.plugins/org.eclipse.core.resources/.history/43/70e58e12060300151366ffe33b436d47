@@ -1,0 +1,148 @@
+import static org.junit.Assert.*;
+import junit.framework.JUnit4TestAdapter;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
+import java.util.regex.*;
+
+import org.junit.Test;
+
+//assertTrue, assertEquals
+/**public class GameTests
+{
+
+    @Test 
+    public void TileConstructorTest()
+    {
+        Tile t = new Tile();
+        assertEquals("<<Invalid Default Tile Constructor>>", t.value, 0);
+        t = new Tile(1);
+    }
+    
+    public static junit.framework.Test suite()
+    {
+        return new JUnit4TestAdapter( GameTests.class );
+    }
+
+
+    public static void main( String args[] )
+    {
+        org.junit.runner.JUnitCore.main( "GameTests" );
+    }
+    
+    
+
+}
+*/
+
+public class JUGameTests
+{
+    // --Test GameTests
+    private String symbol = "GGGL";
+
+    private boolean buyOrder = true;
+
+    private boolean marketOrder = true;
+
+    private int numShares = 123;
+
+    private int numToSubtract = 24;
+
+    private double price = 123.45;
+
+
+    @Test
+    public void tradeOrderConstructor()
+    {
+        TradeOrder to = new TradeOrder( null,
+            symbol,
+            buyOrder,
+            marketOrder,
+            numShares,
+            price );
+        String toStr = to.toString();
+
+        assertTrue( "<< Invalid TradeOrder Constructor >>",
+            toStr.contains( "TradeOrder[Trader trader:null" )
+                && toStr.contains( "java.lang.String symbol:" + symbol )
+                && toStr.contains( "boolean buyOrder:" + buyOrder )
+                && toStr.contains( "boolean marketOrder:" + marketOrder )
+                && toStr.contains( "int numShares:" + numShares )
+                && toStr.contains( "double price:" + price ) );
+    }
+
+
+    @Test
+    public void tradeOrderToString()
+    {
+        TradeOrder to = new TradeOrder( null,
+            symbol,
+            buyOrder,
+            marketOrder,
+            numShares,
+            price );
+        assertNotNull( to.toString() );
+    }
+
+
+    @Test
+    public void tradeOrderGetTrader()
+    {
+        TradeOrder to = new TradeOrder( null,
+            symbol,
+            buyOrder,
+            marketOrder,
+            numShares,
+            price );
+        assertNull( "<< TradeOrder: " + to.getTrader() + " should be null >>",
+            to.getTrader() );
+    }
+
+
+    @Test
+    public void tradeOrderGetSymbol()
+    {
+        TradeOrder to = new TradeOrder( null,
+            symbol,
+            buyOrder,
+            marketOrder,
+            numShares,
+            price );
+        assertEquals( "<< TradeOrder: " + to.getTrader() + " should be "
+            + symbol + " >>", symbol, to.getSymbol() );
+    }
+
+
+    @Test
+    public void tradeOrderIsBuy()
+    {
+        TradeOrder to = new TradeOrder( null,
+            symbol,
+            buyOrder,
+            marketOrder,
+            numShares,
+            price );
+
+        assertTrue( "<< TradeOrder: " + to.isBuy() + " should be " + buyOrder
+            + " >>", to.isBuy() );
+    }
+
+
+    
+    
+
+
+    public static junit.framework.Test suite()
+    {
+        return new JUnit4TestAdapter( GameTests.class );
+    }
+
+
+    public static void main( String args[] )
+    {
+        org.junit.runner.JUnitCore.main( "GameTests" );
+    }
+
+}
+

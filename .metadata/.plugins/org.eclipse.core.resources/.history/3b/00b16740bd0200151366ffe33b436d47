@@ -1,0 +1,148 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class GameGrid
+{
+    private static final String FONT_NAME = "Georgia";
+    //font of the numbers of the tiles
+    private static final int TILE_SIZE = 64;
+    private static final int TILES_MARGIN = 16;
+    
+    private Tile[] myTiles;
+    
+    //==========================================================================
+    // Grid
+    //==========================================================================
+
+    private Tile tileAt( int x, int y )
+    {
+        return myTiles[x + y * 4];
+    }
+
+
+    private void addTile()
+    {
+        List<Tile> list = availableSpace();
+        if ( !availableSpace().isEmpty() )
+        {
+            int index = (int)( Math.random() * list.size() ) % list.size();
+            Tile emptyTime = list.get( index );
+            emptyTime.value = Math.random() < 0.9 ? 2 : 4;
+        }
+    }
+
+
+    private List<Tile> availableSpace()
+    {
+        final List<Tile> list = new ArrayList<Tile>( 16 );
+        for ( Tile t : myTiles )
+        {
+            if ( t.isEmpty() )
+            {
+                list.add( t );
+            }
+        }
+        return list;
+    }
+
+
+    /**
+     * TODO Write your method description here.
+     * @return
+     */
+    private boolean isFull()
+    {
+        return availableSpace().size() == 0;
+    }
+
+
+    /**
+     * Boolean to see if there are any available moves left
+     * @return
+     */
+    public boolean canMove()
+    {
+        if ( !isFull() )
+        {
+            return true;
+        }
+        //iterates through the entire grid to check the free space
+        for ( int x = 0; x < 4; x++ )
+        {
+            for ( int y = 0; y < 4; y++ )
+            {
+                Tile t = tileAt( x, y );
+                if ( ( x < 3 && t.value == tileAt( x + 1, y ).value )
+                    || ( ( y < 3 ) && t.value == tileAt( x, y + 1 ).value ) )
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * TODO Write your method description here.
+     * @param line1
+     * @param line2
+     * @return
+     */
+    private boolean compare( Tile[] line1, Tile[] line2 )
+    {
+        if ( line1 == line2 )
+        {
+            return true;
+        }
+        else if ( line1.length != line2.length )
+        {
+            return false;
+        }
+
+        for ( int i = 0; i < line1.length; i++ )
+        {
+            if ( line1[i].value != line2[i].value )
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    
+    /**
+     * TODO Write your method description here.
+     * @param angle
+     * @return
+     */
+    private Tile[] rotate( int angle )
+    {
+        Tile[] newTiles = new Tile[4 * 4];
+        int xoff = 3;
+        int yoff = 3;
+        if ( angle == 90 )
+        {
+            yoff = 0;
+        }
+        else if ( angle == 270 )
+        {
+            xoff = 0;
+        }
+
+        double rad = Math.toRadians( angle );
+        int cos = (int)Math.cos( rad );
+        int sin = (int)Math.sin( rad );
+        for ( int x = 0; x < 4; x++ )
+        {
+            for ( int y = 0; y < 4; y++ )
+            {
+                int newX = ( x * cos ) - ( y * sin ) + xoff;
+                int newY = ( x * sin ) + ( y * cos ) + yoff;
+                newTiles[( newX ) + ( newY ) * 4] = tileAt( x, y );
+            }
+        }
+        return newTiles;
+    }
+}
