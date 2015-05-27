@@ -85,7 +85,7 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Adds a tile into the available spaces in the grid
      */
     private void addTile()
     {
@@ -107,9 +107,9 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Returns a list of the available spaces left in the grid
      * 
-     * @return
+     * @return list of spaces
      */
     private List<Tile> availableSpace()
     {
@@ -165,7 +165,8 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Compares two lines in the grid to each other to see if they are equal
+     * (basically if they are ready to be added)
      * 
      * @param line1
      * @param line2
@@ -194,7 +195,8 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Rotates the tiles so that the "left" method can be reused by right, up,
+     * and down
      * 
      * @param angle
      * @return
@@ -230,7 +232,7 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Moves one line to the other lines to prepare numbers for adding
      * 
      * @param oldLine
      * @return
@@ -261,7 +263,7 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Merges two lines together, whether they are the same line or not
      * 
      * @param oldLine
      * @return
@@ -276,8 +278,9 @@ public class GameGrid
             {
                 num *= 2;
                 scene.incrementScore( num );
-                int ourTarget = 2048;
-                if ( num == ourTarget )
+                //WINNING SCORE HERE
+                int target = 2048;
+                if ( num == target )
                 {
                     scene.myWin = true;
                 }

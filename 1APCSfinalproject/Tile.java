@@ -58,7 +58,8 @@ public class Tile
 
     /**
      * Returns the color for the text of the numbers on the tiles
-     * @return Color 
+     * 
+     * @return Color
      */
     public Color textColor()
     {
@@ -68,11 +69,12 @@ public class Tile
 
     /**
      * Returns the game for the background of the game
+     * 
      * @return Color
      */
     public Color getBackground()
     {
-        //BufferedImage img = null;
+        // BufferedImage img = null;
         switch ( value )
         {
             case 2:
@@ -98,7 +100,7 @@ public class Tile
             case 2048:
                 return new Color( 0xedc22e );
         }
-        
+
         return new Color( 0xcdc1b4 );
     }
 }

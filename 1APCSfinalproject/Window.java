@@ -6,20 +6,22 @@ import java.awt.GridLayout;
 
 import javax.swing.WindowConstants;
 
+
 /**
- *  Creates the window used for the 2048 game.
+ * Creates the window used for the 2048 game.
  *
- *  @author  jessicajiang and sarahpark
- *  @version May 27, 2015
- *  @author  Period: TODO
- *  @author  Assignment: 1APCSfinalproject
+ * @author jessicajiang and sarahpark
+ * @version May 27, 2015
+ * @author Period: TODO
+ * @author Assignment: 1APCSfinalproject
  *
- *  @author  Sources: TODO
+ * @author Sources: TODO
  */
 public class Window
 {
     JFrame frame = new JFrame();
- 
+
+
     public static void main( String[] args )
     {
         JFrame myFrame = new JFrame();
@@ -33,4 +35,8 @@ public class Window
         myFrame.setLocationRelativeTo( null );
         myFrame.setVisible( true );
     }
+    
+    Runtime runtime = Runtime.getRuntime();
+
+    
 }
