@@ -10,7 +10,9 @@ import java.util.List;
 
 
 /**
- * The Mainscene class dealt with the 
+ * TODO Write a one-sentence summary of your class here. TODO Follow it with
+ * additional details about its purpose, what abstraction it represents, and how
+ * to use it.
  *
  * @author jessicajiang
  * @version May 11, 2015
@@ -40,18 +42,14 @@ public class MainScene extends JPanel
         
         grid = new GameGrid(this);
         
-        //deals with all the keystroke registering
-        //keyadapter allows the keys pressed to work
         addKeyListener( new KeyAdapter()
         {
-            //
             public void keyPressed( KeyEvent e )
             {
                 if ( e.getKeyCode() == KeyEvent.VK_ESCAPE )
                 {
                     resetGame();
                 }
-                
                 if ( !grid.canMove() )
                 {
                     myLose = true;
