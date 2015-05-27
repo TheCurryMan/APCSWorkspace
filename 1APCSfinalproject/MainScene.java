@@ -10,53 +10,72 @@ import java.util.List;
 
 
 /**
- * The Mainscene class dealt with the 
+ * The Mainscene class dealt with the
  *
  * @author jessicajiang
  * @version May 11, 2015
  * @author Period: TODO
  * @author Assignment: 1APCSfinalproject
  *
- * @author Sources: TODO
+ * @author Sources:
+ *         https://docs.oracle.com/javase/tutorial/2d/advanced/quality.html
+ *         http:
+ *         //docs.oracle.com/javase/7/docs/api/java/awt/event/KeyListener.html
+ *         http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html
  */
 public class MainScene extends JPanel
 {
-    private static final Color BG_COLOR = new Color(0x6B5A62);
-    //background color of playing screen
+    private static final Color BG_COLOR = new Color( 0x6B5A62 );
+
+    // background color of playing screen
     private static final String FONT_NAME = "Questrial";
-    //font of the numbers of the tiles
+
+    // font of the numbers of the tiles
     private static final int TILE_SIZE = 64;
+
+    // size of each tile
     private static final int TILES_MARGIN = 16;
+
+    // margin between the tiles
     private GameGrid grid;
-   
+
+    // creating an object of the GameGrid class
+
     protected boolean myWin = false;
+
     protected boolean myLose = false;
+
     protected int myScore = 0;
+
 
     public MainScene()
     {
-        setFocusable( true ); //focusable flag indicates whether a component 
-        //can gain the focus if it is requested to do so
-        
-        grid = new GameGrid(this);
-        
-        //deals with all the keystroke registering
-        //keyadapter allows the keys pressed to work
+        setFocusable( true ); // focusable flag indicates whether a component
+        // can gain the focus if it is requested to do so
+
+        grid = new GameGrid( this );
+
+        // deals with all the keystroke registering
+        // keyadapter allows the keys pressed to work
         addKeyListener( new KeyAdapter()
         {
-            //
+            // keypressing
             public void keyPressed( KeyEvent e )
             {
-                if ( e.getKeyCode() == KeyEvent.VK_ESCAPE )
+                // when the escape button is pressed (VK_SPACE), call reset
+                // game
+                if ( e.getKeyCode() == KeyEvent.VK_SPACE )
                 {
                     resetGame();
                 }
-                
+
                 if ( !grid.canMove() )
                 {
                     myLose = true;
                 }
 
+                // connects the arrow keys to their movement functions in the
+                // GameGrid class; respectively, left, right, down, and up
                 if ( !myWin && !myLose )
                 {
                     switch ( e.getKeyCode() )
@@ -84,7 +103,6 @@ public class MainScene extends JPanel
                 repaint();
             }
         } );
-        
 
         myScore = 0;
         myWin = false;
@@ -100,11 +118,13 @@ public class MainScene extends JPanel
         grid.resetGrid();
     }
 
-    public void addScore(int score)
+
+    public void incrementScore( int score )
     {
         myScore += score;
     }
-    
+
+
     public void paint( Graphics g )
     {
         super.paint( g );
@@ -118,7 +138,8 @@ public class MainScene extends JPanel
             }
         }
     }
-    
+
+
     private void drawTile( Graphics g2, Tile tile, int x, int y )
     {
         Graphics2D g = ( (Graphics2D)g2 );
@@ -127,8 +148,8 @@ public class MainScene extends JPanel
         g.setRenderingHint( RenderingHints.KEY_STROKE_CONTROL,
             RenderingHints.VALUE_STROKE_NORMALIZE );
         int value = tile.value;
-        int xOffset = offsetCoors( x );
-        int yOffset = offsetCoors( y );
+        int xOffset = tileCoordinates( x );
+        int yOffset = tileCoordinates( y );
         g.setColor( tile.getBackground() );
         g.fillRoundRect( xOffset, yOffset, TILE_SIZE, TILE_SIZE, 14, 14 );
         g.setColor( tile.getForeground() );
@@ -146,15 +167,16 @@ public class MainScene extends JPanel
             g.drawString( s, xOffset + ( TILE_SIZE - w ) / 2, yOffset
                 + TILE_SIZE - ( TILE_SIZE - h ) / 2 - 2 );
 
-        //=================================================================
+        // =================================================================
         // Winning/Losing Conditions
-        //===================================================================
+        // ===================================================================
         if ( myWin || myLose )
         {
-            //TODO://edit window GUI
-            g.setColor( Color.lightGray ); //sets the background color of the last screen
+            // TODO://edit window GUI
+            g.setColor( Color.lightGray ); // sets the background color of the
+                                           // last screen
             g.fillRect( 0, 0, getWidth(), getHeight() );
-            g.setColor( Color.white ); //sets the color of the text
+            g.setColor( Color.white ); // sets the color of the text
             g.setFont( new Font( FONT_NAME, Font.BOLD, 48 ) );
             if ( myWin )
             {
@@ -162,13 +184,13 @@ public class MainScene extends JPanel
             }
             if ( myLose )
             {
-                g.drawString( "Game over!", 50 , 130 );
+                g.drawString( "You Lose!", 50, 130 );
             }
             if ( myWin || myLose )
             {
                 g.setFont( new Font( FONT_NAME, Font.ITALIC, 16 ) );
                 g.setColor( new Color( 128, 128, 128, 128 ) );
-                g.drawString( "Press ESC to play again", 80, getHeight() - 60 );
+                g.drawString( "Press SPACE to play again", 80, getHeight() - 60 );
             }
         }
         g.setFont( new Font( FONT_NAME, Font.PLAIN, 18 ) );
@@ -177,9 +199,14 @@ public class MainScene extends JPanel
     }
 
 
-    private static int offsetCoors( int arg )
+    /**
+     * Finds the leftmost or topmost pixel of the nth single square tile
+     * @param arg
+     * @return
+     */
+    private static int tileCoordinates( int n )
     {
-        return arg * ( TILES_MARGIN + TILE_SIZE ) + TILES_MARGIN;
+        return n * ( TILES_MARGIN + TILE_SIZE ) + TILES_MARGIN;
     }
 
 }

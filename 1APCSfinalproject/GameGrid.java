@@ -8,37 +8,57 @@ import java.util.List;
 import javax.swing.*;
 
 
-
 public class GameGrid
 {
     private static final String FONT_NAME = "Georgia";
-    //font of the numbers of the tiles
-    
-    private Tile[] myTiles;
-    private MainScene scene;
-    
-    //==========================================================================
-    // Grid
-    //==========================================================================
 
-    public GameGrid(MainScene myScene)
+    // font of the numbers of the tiles
+
+    private Tile[] myTiles;
+
+    private MainScene scene;
+
+
+    // =========================================================================
+    // Grid
+    // =========================================================================
+
+    public GameGrid( MainScene myScene )
     {
         scene = myScene;
-        
-        //scene.resetGame();
+
+        // scene.resetGame();
         resetGrid();
     }
-    
-    private Tile tileAt( int x, int y )
+
+
+    /**
+     * Returns location of tile
+     * 
+     * @param x
+     * @param y
+     * @return Tile
+     */
+    private Tile tileLocation( int x, int y )
     {
         return myTiles[x + y * 4];
     }
 
+
+    /**
+     * Returns the array of tiles
+     * 
+     * @return Tile[]
+     */
     public Tile[] getGrid()
     {
         return myTiles;
     }
-    
+
+
+    /**
+     * Resets the grid to have empty tiles, creates two new tiles
+     */
     public void resetGrid()
     {
         myTiles = new Tile[4 * 4];
@@ -49,7 +69,11 @@ public class GameGrid
         addTile();
         addTile();
     }
-    
+
+
+    /**
+     * TODO Write your method description here.
+     */
     private void addTile()
     {
         List<Tile> list = availableSpace();
@@ -57,18 +81,24 @@ public class GameGrid
         {
             int index = (int)( Math.random() * list.size() ) % list.size();
             Tile emptyTile = list.get( index );
-            if (Math.random()< 0.9)
+            if ( Math.random() < 0.9 )
             {
                 emptyTile.value = 2;
             }
-            else {
+            else
+            {
                 emptyTile.value = 4;
             }
-            //emptyTile.value = Math.random() < 0.9 ? 2 : 4;
+            // emptyTile.value = Math.random() < 0.9 ? 2 : 4;
         }
     }
 
 
+    /**
+     * TODO Write your method description here.
+     * 
+     * @return
+     */
     private List<Tile> availableSpace()
     {
         final List<Tile> list = new ArrayList<Tile>( 16 );
@@ -84,8 +114,9 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
-     * @return
+     * Boolean to check if the grid is full or not
+     * 
+     * @return boolean for true or false
      */
     private boolean isFull()
     {
@@ -95,7 +126,8 @@ public class GameGrid
 
     /**
      * Boolean to see if there are any available moves left
-     * @return
+     * 
+     * @return true or false if there are any moves
      */
     public boolean canMove()
     {
@@ -103,14 +135,14 @@ public class GameGrid
         {
             return true;
         }
-        //iterates through the entire grid to check the free space
+        // iterates through the entire grid to check the free space
         for ( int x = 0; x < 4; x++ )
         {
             for ( int y = 0; y < 4; y++ )
             {
-                Tile t = tileAt( x, y );
-                if ( ( x < 3 && t.value == tileAt( x + 1, y ).value )
-                    || ( ( y < 3 ) && t.value == tileAt( x, y + 1 ).value ) )
+                Tile t = tileLocation( x, y );
+                if ( ( x < 3 && t.value == tileLocation( x + 1, y ).value )
+                    || ( ( y < 3 ) && t.value == tileLocation( x, y + 1 ).value ) )
                 {
                     return true;
                 }
@@ -122,6 +154,7 @@ public class GameGrid
 
     /**
      * TODO Write your method description here.
+     * 
      * @param line1
      * @param line2
      * @return
@@ -147,9 +180,10 @@ public class GameGrid
         return true;
     }
 
-    
+
     /**
      * TODO Write your method description here.
+     * 
      * @param angle
      * @return
      */
@@ -176,14 +210,16 @@ public class GameGrid
             {
                 int newX = ( x * cos ) - ( y * sin ) + xoff;
                 int newY = ( x * sin ) + ( y * cos ) + yoff;
-                newTiles[( newX ) + ( newY ) * 4] = tileAt( x, y );
+                newTiles[( newX ) + ( newY ) * 4] = tileLocation( x, y );
             }
         }
         return newTiles;
     }
-    
+
+
     /**
      * TODO Write your method description here.
+     * 
      * @param oldLine
      * @return
      */
@@ -202,7 +238,7 @@ public class GameGrid
         else
         {
             Tile[] newLine = new Tile[4];
-            ensureSize( l, 4 );
+            ensureSizes( l, 4 );
             for ( int i = 0; i < 4; i++ )
             {
                 newLine[i] = l.removeFirst();
@@ -214,6 +250,7 @@ public class GameGrid
 
     /**
      * TODO Write your method description here.
+     * 
      * @param oldLine
      * @return
      */
@@ -226,7 +263,7 @@ public class GameGrid
             if ( i < 3 && oldLine[i].value == oldLine[i + 1].value )
             {
                 num *= 2;
-                scene.addScore( num );
+                scene.incrementScore( num );
                 int ourTarget = 2048;
                 if ( num == ourTarget )
                 {
@@ -242,28 +279,30 @@ public class GameGrid
         }
         else
         {
-            ensureSize( list, 4 );
+            ensureSizes( list, 4 );
             return list.toArray( new Tile[4] );
         }
     }
 
 
     /**
-     * TODO Write your method description here.
+     * Adds new tiles until the grid the grid equals the size b
+     * 
      * @param l
      * @param s
      */
-    private static void ensureSize( java.util.List<Tile> l, int s )
+    private static void ensureSizes( java.util.List<Tile> a, int b )
     {
-        while ( l.size() != s )
+        while ( a.size() != b )
         {
-            l.add( new Tile() );
+            a.add( new Tile() );
         }
     }
 
 
     /**
      * TODO Write your method description here.
+     * 
      * @param index
      * @return
      */
@@ -272,64 +311,77 @@ public class GameGrid
         Tile[] result = new Tile[4];
         for ( int i = 0; i < 4; i++ )
         {
-            result[i] = tileAt( i, index );
+            result[i] = tileLocation( i, index );
         }
         return result;
     }
 
 
-    private void setLine( int index, Tile[] re )
+    /**
+     * TODO Write your method description here.
+     * @param index
+     * @param re
+     */
+    private void setLine( int index, Tile[] result )
     {
-        System.arraycopy( re, 0, myTiles, index * 4, 4 );
+        for ( int i = 0; i < 4; i++ )
+        {
+            myTiles[ index*4 + i] = result[i];
+        }
+        //System.arraycopy( re, 0, myTiles, index * 4, 4 );
+        
     }
 
 
-    
-    //==========================================================================
+    // ==========================================================================
     // Movement
-    //==========================================================================
-      public void left()
-      {
-          boolean needAddTile = false;
-          for ( int i = 0; i < 4; i++ )
-          {
-              Tile[] line = getLine( i );
-              Tile[] merged = mergeLine( moveLine( line ) );
-              setLine( i, merged );
-              if ( !needAddTile && !compare( line, merged ) )
-              {
-                  needAddTile = true;
-                  
-              }
-          }
+    // ==========================================================================
+    /**
+     * Moves the tiles left. The following methods below use this left method as
+     * well.
+     */
+    public void left()
+    {
+        boolean needAddTile = false;
+        for ( int i = 0; i < 4; i++ )
+        {
+            Tile[] line = getLine( i );
+            Tile[] merged = mergeLine( moveLine( line ) );
+            setLine( i, merged );
+            if ( !needAddTile && !compare( line, merged ) )
+            {
+                needAddTile = true;
 
-          if ( needAddTile )
-          {
-              addTile();
-          }
-      }
+            }
+        }
 
-
-      public void right()
-      {
-          myTiles = rotate( 180 );
-          left();
-          myTiles = rotate( 180 );
-      }
+        if ( needAddTile )
+        {
+            addTile();
+        }
+    }
 
 
-      public void up()
-      {
-          myTiles = rotate( 270 );
-          left();
-          myTiles = rotate( 90 );
-      }
+    public void right()
+    {
+        myTiles = rotate( 180 );
+        left();
+        myTiles = rotate( 180 );
+    }
 
 
-      public void down()
-      {
-          myTiles = rotate( 90 );
-          left();
-          myTiles = rotate( 270 );
-      }
+    public void up()
+    {
+        myTiles = rotate( 270 );
+        left();
+        myTiles = rotate( 90 );
+    }
+
+
+    public void down()
+    {
+        myTiles = rotate( 90 );
+        left();
+        myTiles = rotate( 270 );
+    }
 }
