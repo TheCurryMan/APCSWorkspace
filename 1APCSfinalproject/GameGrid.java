@@ -8,6 +8,19 @@ import java.util.List;
 import javax.swing.*;
 
 
+/**
+ * The Grid class is the entire background and playing field for the game. This
+ * means that all movement and interaction between the tiles is accounted for in
+ * the Grid class.
+ * 
+ *
+ * @author jessicajiang and sarahpark
+ * @version May 27, 2015
+ * @author Period: 4
+ * @author Assignment: 1APCSfinalproject
+ *
+ * @author Sources: TODO
+ */
 public class GameGrid
 {
     private static final String FONT_NAME = "Georgia";
@@ -89,7 +102,6 @@ public class GameGrid
             {
                 emptyTile.value = 4;
             }
-            // emptyTile.value = Math.random() < 0.9 ? 2 : 4;
         }
     }
 
@@ -301,7 +313,7 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Locates the line of the array
      * 
      * @param index
      * @return
@@ -318,18 +330,18 @@ public class GameGrid
 
 
     /**
-     * TODO Write your method description here.
+     * Copies the result array into the indexed row
+     * 
      * @param index
-     * @param re
+     * @param result
      */
     private void setLine( int index, Tile[] result )
     {
         for ( int i = 0; i < 4; i++ )
         {
-            myTiles[ index*4 + i] = result[i];
+            myTiles[index * 4 + i] = result[i];
         }
-        //System.arraycopy( re, 0, myTiles, index * 4, 4 );
-        
+
     }
 
 

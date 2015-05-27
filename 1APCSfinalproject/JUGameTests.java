@@ -39,7 +39,7 @@ public class JUGameTests
     public void TileGetForeground()
     {
         Tile t = new Tile();
-        assertEquals("<<Invalid Foreground Color>>", t.getForeground(), Color.BLACK);
+        assertEquals("<<Invalid Foreground Color>>", t.textColor(), Color.BLACK);
     }
     
     //Test -- MainScene Class

@@ -10,9 +10,12 @@ import java.util.List;
 
 
 /**
- * The Mainscene class dealt with the
+ * The MainScene class manages all the game logistics. This means that the
+ * score, options, pausing, ending, and restarting the game are all managed in
+ * the MainScene.
+ * 
  *
- * @author jessicajiang
+ * @author jessicajiang and sarahpark
  * @version May 11, 2015
  * @author Period: TODO
  * @author Assignment: 1APCSfinalproject
@@ -110,6 +113,10 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * Resets the game back to the score being 0, and resets the grid to empty
+     * tiles.
+     */
     public void resetGame()
     {
         myScore = 0;
@@ -119,12 +126,24 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * Adds the score for every move that is made.
+     * 
+     * @param score
+     */
     public void incrementScore( int score )
     {
         myScore += score;
     }
 
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.swing.JComponent#paint(java.awt.Graphics) Paints the
+     * background of the scene to the background color and draws the tiles in
+     * the grid
+     */
     public void paint( Graphics g )
     {
         super.paint( g );
@@ -140,21 +159,38 @@ public class MainScene extends JPanel
     }
 
 
+    /**
+     * Draws each tile into the grid.
+     * 
+     * @param g2
+     * @param tile
+     * @param x
+     * @param y
+     */
     private void drawTile( Graphics g2, Tile tile, int x, int y )
     {
         Graphics2D g = ( (Graphics2D)g2 );
-        g.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
-            RenderingHints.VALUE_ANTIALIAS_ON );
-        g.setRenderingHint( RenderingHints.KEY_STROKE_CONTROL,
-            RenderingHints.VALUE_STROKE_NORMALIZE );
+        // here
         int value = tile.value;
         int xOffset = tileCoordinates( x );
         int yOffset = tileCoordinates( y );
         g.setColor( tile.getBackground() );
         g.fillRoundRect( xOffset, yOffset, TILE_SIZE, TILE_SIZE, 14, 14 );
-        g.setColor( tile.getForeground() );
-        final int size = value < 100 ? 36 : value < 1000 ? 32 : 24;
-        final Font font = new Font( FONT_NAME, Font.BOLD, size );
+        g.setColor( tile.textColor() );
+        final int fsize;
+        if ( value < 100 )
+        {
+            fsize = 36;
+        }
+        else if ( value < 1000 )
+        {
+            fsize = 32;
+        }
+        else
+        {
+            fsize = 24;
+        }
+        Font font = new Font( FONT_NAME, Font.BOLD, fsize );
         g.setFont( font );
 
         String s = String.valueOf( value );
@@ -178,6 +214,7 @@ public class MainScene extends JPanel
             g.fillRect( 0, 0, getWidth(), getHeight() );
             g.setColor( Color.white ); // sets the color of the text
             g.setFont( new Font( FONT_NAME, Font.BOLD, 48 ) );
+            // writes the game over strings
             if ( myWin )
             {
                 g.drawString( "You won!", 65, 150 );
@@ -201,8 +238,9 @@ public class MainScene extends JPanel
 
     /**
      * Finds the leftmost or topmost pixel of the nth single square tile
-     * @param arg
-     * @return
+     * 
+     * @param n
+     * @return integer
      */
     private static int tileCoordinates( int n )
     {
